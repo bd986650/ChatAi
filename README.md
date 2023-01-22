@@ -13,8 +13,7 @@
 
 ## Preview
 
-![ezgif com-gif-maker](https://user-images.githubusercontent.com/96487423/213917263-95cf6abf-7450-49b0-951c-ff21d3128c20.gif)
-
+![chataipreview](https://user-images.githubusercontent.com/96487423/213917292-cb314c91-cf55-47f4-b71c-f23bebc866e1.gif)
 
 ## Get Started
 
