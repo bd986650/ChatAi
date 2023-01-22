@@ -13,6 +13,8 @@
 
 ## Preview
 
+![chataipreview](https://user-images.githubusercontent.com/96487423/213917153-7880753f-8fda-4736-8332-87f3889a85d0.gif)
+
 
 ## Get Started
 
