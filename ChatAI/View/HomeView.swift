@@ -17,90 +17,99 @@ struct HomeView: View {
     @State var messageText: String = ""
     
     var body: some View {
-        VStack {
-            headerView()
-            
-            if chatMessages.isEmpty {
-                VStack {
-                    Spacer()
-                    
-                    EmptyChatView()
-                    
-                    Spacer()
-                }
-            } else {
-                ScrollView {
-                    ScrollViewReader { scrollViewProxy in
-                        VStack {
-                            ForEach(chatMessages, id: \.id) { message in
-                                messageView(message: message)
-                                    .onTapGesture {
-                                        pasteboard.string = message.content
-                                        let vibration = UINotificationFeedbackGenerator()
-                                        vibration.notificationOccurred(.success)
-                                    }
-                            }
+        ZStack {
+            Color.white
+            VStack {
+                //Spacer().frame(height: 20)
+                headerView()
+                
+                if chatMessages.isEmpty {
+                    VStack {
+                        
+                        //EmptyChatView()
+                        
+                        Spacer()
+                    }
+                } else {
+                    ScrollView {
+                        ScrollViewReader { scrollViewProxy in
+                            VStack {
+                                ForEach(chatMessages, id: \.id) { message in
+                                    messageView(message: message)
+                                        .onTapGesture {
+                                            pasteboard.string = message.content
+                                            let vibration = UINotificationFeedbackGenerator()
+                                            vibration.notificationOccurred(.success)
+                                        }
+                                }
 
-                            HStack{
-                                Spacer()
+                                HStack{
+                                    Spacer()
+                                }
+                                .id(Self.scrollToBottom)
                             }
-                            .id(Self.scrollToBottom)
-                        }
-                        .onReceive(viewModel.$countMessages) { _ in
-                            withAnimation(.easeOut(duration: 0.5)) {
-                                scrollViewProxy.scrollTo(Self.scrollToBottom, anchor: .bottom)
+                            .onReceive(viewModel.$countMessages) { _ in
+                                withAnimation(.easeOut(duration: 0.5)) {
+                                    scrollViewProxy.scrollTo(Self.scrollToBottom, anchor: .bottom)
+                                }
                             }
                         }
                     }
                 }
-            }
-            
-            HStack {
-                TextField("Type your message...", text: $messageText)
-                    .padding()
-                    .accentColor(.white)
-
-                Button {
-                    sendMessage()
-                    messageText = ""
-                } label: {
-                    Image(systemName: messageText == "" ? "circle" : "arrow.up.circle.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 25, height: 25)
-                        .scaleEffect(messageText == "" ? 1.0 : 1.3)
-                        .foregroundColor(messageText == "" ? .white.opacity(0.6) : .white)
+                
+                HStack {
+                    TextField("Type your message...", text: $messageText)
                         .padding()
+                        .foregroundColor(.black)
+                        .accentColor(.black)
+
+                    Button {
+                        sendMessage()
+                        messageText = ""
+                    } label: {
+                        Image(systemName: messageText == "" ? "circle" : "arrow.up.circle.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 25, height: 25)
+                            .scaleEffect(messageText == "" ? 1.0 : 1.3)
+                            .foregroundColor(Color("dairyBlue"))
+                            .padding()
+                    }
+                    .disabled(messageText == "")
                 }
-                .disabled(messageText == "")
+                .background(.gray.opacity(0.1))
+                .cornerRadius(20)
             }
-            .background(.gray.opacity(0.1))
-            .cornerRadius(20)
-        }
-        .padding()
+            .padding()
         .onTapGesture { self.hideKeyboard() }
+        }
     }
     
     @ViewBuilder
     func headerView() -> some View {
         HStack {
+//            Button {
+//                chatMessages.removeAll()
+//            } label: {
+//                Image(systemName: "x.circle")
+//                    .resizable()
+//                    .frame(width: 40, height: 40, alignment: .topLeading)
+//                    .foregroundColor(Color("dairyBlue"))
+//            }
             Button {
                 chatMessages.removeAll()
             } label: {
-                Image(systemName: "aqi.medium")
+                Image("dairyLogo")
                     .resizable()
-                    .scaledToFit()
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
-                    .frame(width: 30, height: 30)
+                    .frame(width: 190, height: 170, alignment: .center)
             }
             
-            Text("Chat Bot")
-                .font(.title)
-                .fontWeight(.medium)
-            
+//            Text("AI Marketing Agent")
+//                .font(.title)
+//                .fontWeight(.medium)
+//                .foregroundColor(Color("dairyBlue"))
         }
-        .padding(.horizontal, 20)
+        //.padding(.horizontal, 20)
     }
 
     @ViewBuilder
@@ -113,7 +122,7 @@ struct HomeView: View {
             Text(message.content)
                 .foregroundColor(message.sender == .user ? .black : .white)
                 .padding()
-                .background(message.sender == .user ? RoundedCorners(tl: 35, tr: 10, bl: 35, br: 35).fill(Color("UserMessageColor")) : RoundedCorners(tl: 35, tr: 35, bl: 10, br: 35).fill(Color("AIMessageColor")))
+                .background(message.sender == .user ? RoundedCorners(tl: 35, tr: 10, bl: 35, br: 35).fill(Color("dairyBlue")) : RoundedCorners(tl: 35, tr: 35, bl: 10, br: 35).fill(Color("cheddarChzOrange")))
             
             if message.sender == .chatAI {
                 Spacer()
