@@ -80,7 +80,7 @@ struct SignupView: View {
                     .foregroundColor(.black)
                 
                 // register button
-                NavigationLink(destination: BrandInfoView()) {
+                NavigationLink(destination: BrandInfoView().navigationBarBackButtonHidden(true)) {
                     Text("Register")
                             .bold()
                             .frame(width: 200, height: 50)

@@ -68,7 +68,7 @@ struct CreativeDirectionView: View {
                 
                 // register button
                 HStack {
-                    NavigationLink(destination: CustomerNeedsView()) {
+                    NavigationLink(destination: CustomerNeedsView().navigationBarBackButtonHidden(true)) {
                         Text("Back")
                             .bold()
                             .frame(width: 200, height: 50)
@@ -82,7 +82,7 @@ struct CreativeDirectionView: View {
                 .offset(y: 10)
                     
                     // register button
-                    NavigationLink(destination: CreativeDirectionView()) {
+                    NavigationLink(destination: CreativeDirectionView().navigationBarBackButtonHidden(true)) {
                         Button {
                             generateMarketingBrief(product: "Food delivery phone app", targetDemographic: "18-30", demographicInfo: "Household income 20k-$50k", gender: "female", targetSentence: "This product is perfect for someone hosting a party.")
                             

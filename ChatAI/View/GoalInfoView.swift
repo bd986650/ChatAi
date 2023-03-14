@@ -82,7 +82,7 @@ struct GoalInfoView: View {
                 .offset(y: 10)
                     
                     // register button
-                    NavigationLink(destination: CustomerInfoView()) {
+                    NavigationLink(destination: CustomerInfoView().navigationBarBackButtonHidden(true)) {
                         Text("Next")
                             .bold()
                             .frame(width: 200, height: 50)
