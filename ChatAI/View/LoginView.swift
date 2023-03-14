@@ -53,7 +53,7 @@ struct LoginView: View {
                     .foregroundColor(Color("dairyBlue"))
                 
                 // sign in 
-                NavigationLink(destination: BrandInfoView()) {
+                NavigationLink(destination: BrandInfoView().navigationBarBackButtonHidden(true)) {
                     Text("sign in")
                             .bold()
                             .frame(width: 200, height: 50)

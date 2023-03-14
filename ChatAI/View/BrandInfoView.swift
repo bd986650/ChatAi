@@ -67,7 +67,7 @@ struct BrandInfoView: View {
                 
                 
                 // register button
-                NavigationLink(destination: GoalInfoView()) {
+                NavigationLink(destination: GoalInfoView().navigationBarBackButtonHidden(true)) {
                     Text("Next")
                         .bold()
                         .frame(width: 200, height: 50)

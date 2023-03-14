@@ -17,7 +17,7 @@ struct SplashView: View {
                         .resizable()
                         .frame(width: 300, height: 250)
                         
-                    NavigationLink(destination: LoginView()){
+                    NavigationLink(destination: LoginView().navigationBarBackButtonHidden(true)){
                             Text("Login")
                                 .font(.title)
                                 .foregroundColor(.white)
@@ -27,7 +27,7 @@ struct SplashView: View {
                         .cornerRadius(10)
                     }
                     
-                    NavigationLink(destination: SignupView()) {
+                    NavigationLink(destination: SignupView().navigationBarBackButtonHidden(true)) {
                         Text("Register")
                                 .font(.title)
                                 .foregroundColor(Color("dairyBlue"))

@@ -81,7 +81,7 @@ struct CustomerInfoView: View {
                 
                 // register button
                 HStack {
-                    NavigationLink(destination: GoalInfoView()) {
+                    NavigationLink(destination: GoalInfoView().navigationBarBackButtonHidden(true)) {
                         Text("Back")
                             .bold()
                             .frame(width: 200, height: 50)
@@ -95,7 +95,7 @@ struct CustomerInfoView: View {
                 .offset(y: 10)
                     
                     // register button
-                    NavigationLink(destination: CustomerNeedsView()) {
+                    NavigationLink(destination: CustomerNeedsView().navigationBarBackButtonHidden(true)) {
                         Text("Next")
                             .bold()
                             .frame(width: 200, height: 50)
