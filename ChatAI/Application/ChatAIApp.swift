@@ -6,8 +6,8 @@ import SwiftUI
 struct ChatAIApp: App {
     var body: some Scene {
         WindowGroup {
-            HomeView(viewModel: ViewModel())
-            //SplashView()
+            //HomeView(viewModel: ViewModel())
+            SplashView()
         }
     }
 }
