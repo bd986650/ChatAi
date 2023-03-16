@@ -34,6 +34,10 @@
 		A6B3256B29A52F43005D2796 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A6B3256A29A52F43005D2796 /* FirebaseAuth */; };
 		A6B3256D29A52F43005D2796 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A6B3256C29A52F43005D2796 /* FirebaseFirestore */; };
 		A6B3257129A54416005D2796 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B3257029A54416005D2796 /* SplashView.swift */; };
+		A6BFE29529C3B5C800446F69 /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BFE29429C3B5C800446F69 /* RoundedTextField.swift */; };
+		A6BFE29729C3B82800446F69 /* WalkthroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BFE29629C3B82800446F69 /* WalkthroughView.swift */; };
+		A6BFE29929C3B89500446F69 /* ProfileandHomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BFE29829C3B89500446F69 /* ProfileandHomePageView.swift */; };
+		A6BFE29B29C3B91300446F69 /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BFE29A29C3B91300446F69 /* HomePageView.swift */; };
 		A6FFBC9129A742580082B2C1 /* BriefGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FFBC9029A742580082B2C1 /* BriefGenerator.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +67,10 @@
 		A6A4832529A58FE200061BF9 /* CreativeDirectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreativeDirectionView.swift; sourceTree = "<group>"; };
 		A6B3256729A52D82005D2796 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		A6B3257029A54416005D2796 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		A6BFE29429C3B5C800446F69 /* RoundedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
+		A6BFE29629C3B82800446F69 /* WalkthroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughView.swift; sourceTree = "<group>"; };
+		A6BFE29829C3B89500446F69 /* ProfileandHomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileandHomePageView.swift; sourceTree = "<group>"; };
+		A6BFE29A29C3B91300446F69 /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
 		A6FFBC9029A742580082B2C1 /* BriefGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefGenerator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -163,17 +171,21 @@
 		1AC094AD297AD60000022EF3 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1A2A19DD297BAE8800B0FF9A /* FirstMessageView.swift */,
-				1AC094B4297AD72700022EF3 /* HomeView.swift */,
 				A6B3257029A54416005D2796 /* SplashView.swift */,
-				A6A4831B29A5671A00061BF9 /* SignupView.swift */,
+				A6BFE29429C3B5C800446F69 /* RoundedTextField.swift */,
 				A6B3256729A52D82005D2796 /* LoginView.swift */,
+				A6A4831B29A5671A00061BF9 /* SignupView.swift */,
+				1AC094B4297AD72700022EF3 /* HomeView.swift */,
 				A6A4831D29A5873D00061BF9 /* BrandInfoView.swift */,
 				A6A4831F29A58B4F00061BF9 /* GoalInfoView.swift */,
 				A6A4832129A58C6A00061BF9 /* CustomerInfoView.swift */,
+				1A2A19DD297BAE8800B0FF9A /* FirstMessageView.swift */,
 				A6A4832329A58E7200061BF9 /* CustomerNeedsView.swift */,
 				A6A4832529A58FE200061BF9 /* CreativeDirectionView.swift */,
 				A66389EB29A7C7500028BD58 /* ProfileView.swift */,
+				A6BFE29629C3B82800446F69 /* WalkthroughView.swift */,
+				A6BFE29829C3B89500446F69 /* ProfileandHomePageView.swift */,
+				A6BFE29A29C3B91300446F69 /* HomePageView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -286,10 +298,13 @@
 				1AC094B0297AD62A00022EF3 /* ApiServiceManager.swift in Sources */,
 				A6FFBC9129A742580082B2C1 /* BriefGenerator.swift in Sources */,
 				A6B3257129A54416005D2796 /* SplashView.swift in Sources */,
+				A6BFE29B29C3B91300446F69 /* HomePageView.swift in Sources */,
 				A6A4831E29A5873D00061BF9 /* BrandInfoView.swift in Sources */,
+				A6BFE29729C3B82800446F69 /* WalkthroughView.swift in Sources */,
 				A6A4832629A58FE200061BF9 /* CreativeDirectionView.swift in Sources */,
 				1A2A19D3297B9F9000B0FF9A /* MessageModel.swift in Sources */,
 				1A3AC3B9297C02EB00C05E9C /* RoundedCorners.swift in Sources */,
+				A6BFE29929C3B89500446F69 /* ProfileandHomePageView.swift in Sources */,
 				1A2A19D9297B9FCE00B0FF9A /* ModelChoice.swift in Sources */,
 				1AC09499297AC64400022EF3 /* ChatAIApp.swift in Sources */,
 				A6A4832429A58E7200061BF9 /* CustomerNeedsView.swift in Sources */,
@@ -298,6 +313,7 @@
 				1AC094B5297AD72700022EF3 /* HomeView.swift in Sources */,
 				1AC094A7297AC6A200022EF3 /* Constants.swift in Sources */,
 				A66389EC29A7C7500028BD58 /* ProfileView.swift in Sources */,
+				A6BFE29529C3B5C800446F69 /* RoundedTextField.swift in Sources */,
 				A6B3256829A52D82005D2796 /* LoginView.swift in Sources */,
 				A6A4831C29A5671A00061BF9 /* SignupView.swift in Sources */,
 				1A2A19D7297B9FC500B0FF9A /* ModelResponse.swift in Sources */,
@@ -439,7 +455,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -470,7 +486,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

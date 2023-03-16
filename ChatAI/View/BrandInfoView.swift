@@ -6,108 +6,54 @@
 //
 
 import SwiftUI
-
 struct BrandInfoView: View {
-    @State private var name = ""
-    @State private var email = ""
-    @State private var password = ""
+    
+    @State private var mission = ""
+    @State private var values = ""
+    @State private var advantage = ""
     @State private var userIsLoggedIn = false
+    
     var body: some View {
         ZStack {
             // insert background
             Color.white
             VStack (spacing: 20){
-                
                 // logo
-                Text("dAIry market")
-                    .foregroundColor(Color("dairyBlue"))
-                    .font(.system(size: 40, weight: .bold, design: .rounded))
-                    .offset(x: -5, y: -100)
+                Image("brand")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
                
-                // name field
-                TextField("Name", text: $name)
-                    .foregroundColor(.black)
-                    .textFieldStyle(.plain)
-                    .placeholder(when: email.isEmpty) {
-                        Text("What is your brand's mission?")
-                            .foregroundColor(.black)
-                            .bold()
-                    }
-                Rectangle()
-                    .frame(width: 350, height: 3)
-                    .foregroundColor(.black)
-                
-                // email
-                TextField("Email", text: $email)
-                    .foregroundColor(.black)
-                    .textFieldStyle(.plain)
-                    .placeholder(when: email.isEmpty) {
-                        Text("What are your brand's values?")
-                            .foregroundColor(.black)
-                            .bold()
-                    }
-                Rectangle()
-                    .frame(width: 350, height: 3)
-                    .foregroundColor(.black)
-                
-                // password
-                TextField("Password", text: $password)
-                    .foregroundColor(.black)
-                    .textFieldStyle(.plain)
-                    .placeholder(when: password.isEmpty) {
-                        Text("What is your competitive advantage?")
-                            .foregroundColor(.black)
-                            .bold()
-                    }
-                    .foregroundColor(.black)
-                        
-                Rectangle()
-                    .frame(width: 350, height: 3)
-                    .foregroundColor(.black)
-                
-                
-                // register button
-                NavigationLink(destination: GoalInfoView().navigationBarBackButtonHidden(true)) {
-                    Text("Next")
-                        .bold()
-                        .frame(width: 200, height: 50)
-                        .background(
-                            RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                .foregroundColor(Color("dairyBlue"))
-                        )
-                        .foregroundColor(.white)
+                VStack(alignment: .leading) {
+                    HStack {
+                        Text("What is your brand’s")
+                        Text("mission? ").foregroundColor(.blue.opacity(0.4))
+                    }.offset(x: 25)
+                    RoundedTextField(title: "Type here...", text: $mission).offset(y: -15)
                 }
-                .padding(.top)
-                .offset(y: 10)
-                
-                HStack{
-                    Image("cowIcon")
-                        .resizable()
-                        .frame(width: 50, height:40)
-                    Circle()
-                        .frame(width: 10, height: 10)
-                        .foregroundColor(.black)
-                        .padding(10)
-                    Circle()
-                        .frame(width: 10, height: 10)
-                        .foregroundColor(.black)
-                        .padding(10)
-                    Circle()
-                        .frame(width: 10, height: 10)
-                        .foregroundColor(.black)
-                        .padding(10)
-                    Circle()
-                        .frame(width: 10, height: 10)
-                        .foregroundColor(.black)
-                        .padding(10)
+                VStack(alignment: .leading) {
+                    HStack {
+                        Text("What is your brand’s")
+                        Text("values? ").foregroundColor(.blue.opacity(0.4))
+                    }.offset(x: 25)
+                    RoundedTextField(title: "Type here...", text: $values).offset(y: -15)
+                }
+                VStack(alignment: .leading) {
+                    HStack {
+                        Text("What is your")
+                        Text("competitive advantage? ").foregroundColor(.blue.opacity(0.4))
+                    }.offset(x: 25)
+                    RoundedTextField(title: "Type here...", text: $advantage).offset(y: -15)
                 }
             }
             .frame(width: 350)
         }
     }
+    
+    static func send() {
+        
+    }
 }
-
-struct BrandInfoView_Previews: PreviewProvider {
+struct BrandView_Previews: PreviewProvider {
     static var previews: some View {
         BrandInfoView()
     }

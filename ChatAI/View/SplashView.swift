@@ -6,48 +6,65 @@
 //
 
 import SwiftUI
-
+enum Legal: Identifiable {
+    case signin
+    case brand
+    case signup
+    var id: Legal { self }
+}
 struct SplashView: View {
     var body: some View {
-        NavigationView() {
+        NavigationStack {
             ZStack {
                 Color.white
+                Image("home")
+                    .resizable()
+                
                 VStack {
-                    Image("DairyMarketIcon")
+                    Image("dairyLogo")
                         .resizable()
-                        .frame(width: 300, height: 250)
-                        
-                    NavigationLink(destination: LoginView().navigationBarBackButtonHidden(true)){
-                            Text("Login")
-                                .font(.title)
-                                .foregroundColor(.white)
-                                .frame(maxWidth: 250)
-                        .padding()
-                        .background(Color("dairyBlue"))
-                        .cornerRadius(10)
-                    }
+                        .aspectRatio(contentMode: .fit)
                     
-                    NavigationLink(destination: SignupView().navigationBarBackButtonHidden(true)) {
-                        Text("Register")
-                                .font(.title)
-                                .foregroundColor(Color("dairyBlue"))
-                                .frame(maxWidth: 250)
-                        .padding()
-                        .background(Color.white)
-                        .cornerRadius(10)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color("dairyBlue"), lineWidth: 2)
+                    VStack {
+                        Text("The AI-generated marketing")
+                        Text("agency in your pocket")
+                    }.offset(y: -30)
+                    
+                    NavigationLink("SIGN UP", value: Legal.signup)
+                        .padding(.vertical, 10)
+                        .padding(.horizontal, 40)
+                        .frame(width: 150)
+                        .background(
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(.blue)
                         )
-                    }
+                    NavigationLink("SIGN IN", value: Legal.signin)
+                        .padding(.vertical, 10)
+                        .padding(.horizontal, 40)
+                        .frame(width: 150)
+                        .background(
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(.blue)
+                            )
+                }.offset(y: -150)
+            }
+            .navigationDestination(for: Legal.self) { selection in
+                switch selection {
+                case .signin:
+                    LoginView()
+                case .signup:
+                    SignupView()
+                case .brand:
+                    SignupView()
+                    //placeholder for WalkthroughView()
                 }
             }
+            .edgesIgnoringSafeArea(.all)
         }
-        .navigationBarBackButtonHidden(true)
-        //.foregroundColor(.white)
+       // .navigationBarBackButtonHidden(true)
+        .edgesIgnoringSafeArea(.all)
     }
 }
-
 struct SplashView_Previews: PreviewProvider {
     static var previews: some View {
         SplashView()
