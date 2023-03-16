@@ -55,8 +55,7 @@ struct SplashView: View {
                 case .signup:
                     SignupView()
                 case .brand:
-                    SignupView()
-                    //placeholder for WalkthroughView()
+                    WalkthroughView()
                 }
             }
             .edgesIgnoringSafeArea(.all)
