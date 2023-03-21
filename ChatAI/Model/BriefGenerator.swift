@@ -17,7 +17,7 @@ func generateMarketingBrief(product: String, targetDemographic: String, demograp
     let url = URL(string: urlString)!
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
-    request.setValue("Bearer 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", forHTTPHeaderField: "Authorization")
+    request.setValue("Bearer ", forHTTPHeaderField: "Authorization")
     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
     
     // Request body

@@ -25,8 +25,7 @@ struct HomeView: View {
                 
                 if chatMessages.isEmpty {
                     VStack {
-                        
-                        //EmptyChatView()
+                        EmptyChatView()
                         
                         Spacer()
                     }
@@ -87,30 +86,14 @@ struct HomeView: View {
     
     @ViewBuilder
     func headerView() -> some View {
-        HStack {
-//            Button {
-//                chatMessages.removeAll()
-//            } label: {
-//                Image(systemName: "x.circle")
-//                    .resizable()
-//                    .frame(width: 40, height: 40, alignment: .topLeading)
-//                    .foregroundColor(Color("dairyBlue"))
-//            }
             Button {
                 chatMessages.removeAll()
             } label: {
                 Image("dairyLogo")
                     .resizable()
-                    .frame(width: 190, height: 170, alignment: .center)
+                    .frame(width: 190, height: 150, alignment: .center)
             }
-            
-//            Text("AI Marketing Agent")
-//                .font(.title)
-//                .fontWeight(.medium)
-//                .foregroundColor(Color("dairyBlue"))
-        }
-        //.padding(.horizontal, 20)
-    }
+    } // headerView
 
     @ViewBuilder
     func messageView(message: MessageModel) -> some View {

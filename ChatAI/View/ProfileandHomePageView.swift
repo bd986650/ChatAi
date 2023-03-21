@@ -51,7 +51,7 @@ struct CircleButton: View {
                 .frame(width: 80, height: 80)
                 .foregroundColor(Color(red: 217/255, green: 217/255, blue: 217/255))
             if title == "chatbot" {
-                NavigationLink(destination: EmptyChatView()) {
+                NavigationLink(destination: HomeView(viewModel: ViewModel())) {
                     Text(title)
                         .font(.system(size: size))
                         .fontWeight(.light)

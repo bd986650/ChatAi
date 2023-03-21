@@ -24,7 +24,7 @@ struct LoginView: View {
                     Text("Here")
                 }
                 
-                NavigationLink("DONE", value: Legal.brand)
+                NavigationLink("SIGN IN", value: Legal.brand)
                     .padding(.vertical, 10)
                     .padding(.horizontal, 40)
                     .frame(width: 150)

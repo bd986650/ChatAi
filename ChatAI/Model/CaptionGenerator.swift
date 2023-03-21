@@ -14,7 +14,7 @@ func generateInstagramCaption(title: String, location: String, hashtags: [String
     let inputText = promptText + hashtagText
     
     // create the API request
-    let apiKey = "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"
+    let apiKey = ""
     let apiUrl = URL(string: "https://api.openai.com/v1/engines/davinci-codex/completions")!
     var request = URLRequest(url: apiUrl)
     request.httpMethod = "POST"
