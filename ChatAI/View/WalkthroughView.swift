@@ -15,9 +15,9 @@ struct WalkthroughView: View {
         VStack {
             // Text("\(currentView)")
             if currentView != 6 {
-                WalkthroughScreen(current: $currentView)
+                WalkthroughScreen(current: $currentView) .navigationBarBackButtonHidden(true)
             } else {
-                ProfileandHomePageView()
+                ProfileandHomePageView().navigationBarBackButtonHidden(true)
             }
         }
     }

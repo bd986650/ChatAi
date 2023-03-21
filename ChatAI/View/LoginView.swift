@@ -32,6 +32,18 @@ struct LoginView: View {
                         RoundedRectangle(cornerRadius: 12)
                             .stroke(.blue)
                     )
+                
+//                NavigationLink(destination: SplashView().navigationBarBackButtonHidden(true)) {
+//                    Text("BACK")
+//                        .padding(.vertical, 10)
+//                        .padding(.horizontal, 40)
+//                        .frame(width: 150)
+//                        .background(
+//                            RoundedRectangle(cornerRadius: 12)
+//                                .stroke(.blue)
+//                        )
+//                }
+               
             }
             .frame(width: 350)
         }
