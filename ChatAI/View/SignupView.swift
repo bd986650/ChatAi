@@ -30,6 +30,7 @@ struct CheckboxToggleStyle: ToggleStyle {
 }
 
 struct SignupView: View {
+    @Environment(\.presentationMode) var presentationMode
     @State private var name = ""
     @State private var email = ""
     @State private var password = ""
@@ -82,6 +83,19 @@ struct SignupView: View {
                             RoundedRectangle(cornerRadius: 12)
                                 .stroke(.blue)
                         )
+//                    Button(action: {
+//                            presentationMode.wrappedValue.dismiss()
+//                    }) {
+//                        Text("BACK")
+//
+//                    }
+//                    .padding(.vertical, 10)
+//                    .padding(.horizontal, 40)
+//                    .frame(width: 150)
+//                    .background(
+//                        RoundedRectangle(cornerRadius: 12)
+//                            .stroke(.blue)
+//                    )
                 }
             }
             .frame(width: 350)
