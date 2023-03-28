@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import Firebase
+
 struct CheckboxToggleStyle: ToggleStyle {
     func makeBody(configuration: Configuration) -> some View {
         HStack {
@@ -72,9 +74,12 @@ struct SignupView: View {
                             Text("Here")
                                 .foregroundColor(.black)
                         }
-                    }
+                    } //Vstack
                     
-                    NavigationLink("DONE", value: Legal.brand)
+                    NavigationLink("DONE", destination: WalkthroughView().onAppear {
+                        print("here")
+                        self.register()
+                    })
                         .disabled(!self.isAgree)
                         .padding(.vertical, 10)
                         .padding(.horizontal, 40)
@@ -102,6 +107,14 @@ struct SignupView: View {
         }
         .edgesIgnoringSafeArea(.all)
     }
+    
+        func register() {
+            Auth.auth().createUser(withEmail: email, password: password) { result, error in
+                if error != nil {
+                    print(error!.localizedDescription)
+                }
+            }
+        } // register
 }
 struct SignupView_Previews: PreviewProvider {
     static var previews: some View {

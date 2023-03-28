@@ -6,13 +6,18 @@
 //
 
 import SwiftUI
+import Firebase
+
 enum Legal: Identifiable {
     case signin
     case brand
     case signup
+    case profile
     var id: Legal { self }
 }
+
 struct SplashView: View {
+   
     var body: some View {
         NavigationStack {
             ZStack {
@@ -56,6 +61,8 @@ struct SplashView: View {
                     SignupView().navigationBarBackButtonHidden(true)
                 case .brand:
                     WalkthroughView()
+                case .profile:
+                    ProfileandHomePageView()
                 }
             }
             .edgesIgnoringSafeArea(.all)

@@ -1,5 +1,5 @@
 import SwiftUI
-//import Firebase
+import Firebase
 struct LoginView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var email = ""
@@ -14,18 +14,17 @@ struct LoginView: View {
             VStack (spacing: 20) {
                 
                 Image("signin")
-                
-                
                 RoundedTextField(title: "Email", text: $email)
-                RoundedTextField(title: "Password", text: $password)
+                RoundedTextField(title: "Password", text: $password, type: 1)
                 
                 HStack {
                     Text("Don’t have an account?")
                     NavigationLink("Sign up", value: Legal.signup)
-                    Text("Here")
                 }
                 
-                NavigationLink("SIGN IN", value: Legal.brand)
+                NavigationLink("SIGN IN", destination: ProfileandHomePageView().onAppear {
+                    self.login()
+                })
                     .padding(.vertical, 10)
                     .padding(.horizontal, 40)
                     .frame(width: 150)
@@ -58,25 +57,20 @@ struct LoginView: View {
     
     
     func login() {
-//        Auth.auth().signIn(withEmail: email, password: password) { result, error in
-//            if error != nil {
-//                print(error!.localizedDescription)
-//            }
-//        }
-    }
-    func register(){
-//        Auth.auth().createUser(withEmail: email, password: password) { result, error in
-//            if error != nil {
-//                print(error!.localizedDescription)
-//            }
-//        }
-    }
+        Auth.auth().signIn(withEmail: email, password: password) { result, error in
+            if error != nil {
+                print(error!.localizedDescription)
+            }
+        }
+    } // login
 }
+
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
     }
 }
+
 extension View {
     func placeholder<Content: View>(
         when shouldShow: Bool,
