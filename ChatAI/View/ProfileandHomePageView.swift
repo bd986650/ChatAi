@@ -39,7 +39,11 @@ struct ProfileandHomePageView: View {
                 .frame(width: 360)
                 .position(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.maxY - 150)
             }
+            
+         
         }
+        
+                
     }
 }
 struct CircleButton: View {

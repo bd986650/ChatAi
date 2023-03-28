@@ -18,8 +18,10 @@ class APIServiceManager {
                 switch response.result {
                 case.success(let result):
                     promise(.success(result))
+//                    print(result)
                 case.failure(let error):
                     promise(.failure(error))
+                    print(error)
                 }
             }
         }

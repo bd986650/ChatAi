@@ -51,9 +51,9 @@ struct SplashView: View {
             .navigationDestination(for: Legal.self) { selection in
                 switch selection {
                 case .signin:
-                    LoginView()
+                    LoginView().navigationBarBackButtonHidden(true)
                 case .signup:
-                    SignupView()
+                    SignupView().navigationBarBackButtonHidden(true)
                 case .brand:
                     WalkthroughView()
                 }

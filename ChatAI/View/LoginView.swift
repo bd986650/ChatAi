@@ -1,6 +1,7 @@
 import SwiftUI
 //import Firebase
 struct LoginView: View {
+    @Environment(\.presentationMode) var presentationMode
     @State private var email = ""
     @State private var password = ""
     @State private var userIsLoggedIn = false
@@ -32,11 +33,30 @@ struct LoginView: View {
                         RoundedRectangle(cornerRadius: 12)
                             .stroke(.blue)
                     )
+                
+           /*Add back button here*/
+                
+                Button(action: {
+                                      presentationMode.wrappedValue.dismiss()
+                }) {
+                    Text("BACK")
+//                        .foregroundColor(Color("UserMessageColor"))
+                        
+                }
+                .padding(.vertical, 10)
+                .padding(.horizontal, 40)
+                .frame(width: 150)
+                .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(.blue)
+                )
             }
             .frame(width: 350)
         }
         .ignoresSafeArea()
     }
+    
+    
     func login() {
 //        Auth.auth().signIn(withEmail: email, password: password) { result, error in
 //            if error != nil {
