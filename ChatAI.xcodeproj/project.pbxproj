@@ -22,6 +22,7 @@
 		1AC094B0297AD62A00022EF3 /* ApiServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC094AF297AD62A00022EF3 /* ApiServiceManager.swift */; };
 		1AC094B3297AD65200022EF3 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC094B2297AD65200022EF3 /* Model.swift */; };
 		1AC094B5297AD72700022EF3 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC094B4297AD72700022EF3 /* HomeView.swift */; };
+		A61FCC7E29D0CE4100BADCC1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A61FCC7D29D0CE4100BADCC1 /* GoogleService-Info.plist */; };
 		A66389EC29A7C7500028BD58 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66389EB29A7C7500028BD58 /* ProfileView.swift */; };
 		A66389EE29A7D6BD0028BD58 /* CaptionGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66389ED29A7D6BD0028BD58 /* CaptionGenerator.swift */; };
 		A6A4831C29A5671A00061BF9 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A4831B29A5671A00061BF9 /* SignupView.swift */; };
@@ -57,6 +58,7 @@
 		1AC094AF297AD62A00022EF3 /* ApiServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServiceManager.swift; sourceTree = "<group>"; };
 		1AC094B2297AD65200022EF3 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		1AC094B4297AD72700022EF3 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		A61FCC7D29D0CE4100BADCC1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A66389EB29A7C7500028BD58 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A66389ED29A7D6BD0028BD58 /* CaptionGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionGenerator.swift; sourceTree = "<group>"; };
 		A6A4831B29A5671A00061BF9 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 			children = (
 				1AC09498297AC64400022EF3 /* ChatAIApp.swift */,
 				1AC0949C297AC64600022EF3 /* Assets.xcassets */,
+				A61FCC7D29D0CE4100BADCC1 /* GoogleService-Info.plist */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 			files = (
 				1AC094A0297AC64600022EF3 /* Preview Assets.xcassets in Resources */,
 				1AC0949D297AC64600022EF3 /* Assets.xcassets in Resources */,
+				A61FCC7E29D0CE4100BADCC1 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,7 +453,8 @@
 				DEVELOPMENT_TEAM = 86DAHSTHXS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "AI Chat";
+				INFOPLIST_KEY_CFBundleDisplayName = "Dairy Market";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -461,7 +466,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.qwoti.ChatAI;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aniyah.ChatAI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -480,7 +485,8 @@
 				DEVELOPMENT_TEAM = 86DAHSTHXS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "AI Chat";
+				INFOPLIST_KEY_CFBundleDisplayName = "Dairy Market";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -492,7 +498,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.qwoti.ChatAI;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aniyah.ChatAI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
