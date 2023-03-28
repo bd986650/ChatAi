@@ -7,10 +7,7 @@
 
 import SwiftUI
 struct CreativeDirectionView: View {
-    @State private var tone = ""
-    @State private var message = ""
-    @State private var style = ""
-    
+    @EnvironmentObject var userInfo : UserInfo
     var body: some View {
         ZStack {
             // insert background
@@ -26,21 +23,21 @@ struct CreativeDirectionView: View {
                         Text("Enter your brand’s ")
                         Text("tone    ").foregroundColor(.blue.opacity(0.4))
                     }.offset(x: 25)
-                    RoundedTextField(title: "Type here...", text: $tone).offset(y: -15)
+                    RoundedTextField(title: "Type here...", text: $userInfo.tone).offset(y: -15)
                 }
                 VStack(alignment: .leading) {
                     HStack {
                         Text("Enter your brand’s ")
                         Text("message").foregroundColor(.blue.opacity(0.4))
                     }.offset(x: 25)
-                    RoundedTextField(title: "Type here...", text: $message).offset(y: -15)
+                    RoundedTextField(title: "Type here...", text: $userInfo.message).offset(y: -15)
                 }
                 VStack(alignment: .leading) {
                     HStack {
                         Text("Enter your brand’s ")
                         Text("style ").foregroundColor(.blue.opacity(0.4))
                     }.offset(x: 25)
-                    RoundedTextField(title: "Type here...", text: $style).offset(y: -15)
+                    RoundedTextField(title: "Type here...", text: $userInfo.style).offset(y: -15)
                 }
             }
             .frame(width: 350)

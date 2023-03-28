@@ -7,10 +7,7 @@
 
 import SwiftUI
 struct BrandInfoView: View {
-    
-    @State private var mission = ""
-    @State private var values = ""
-    @State private var advantage = ""
+    @EnvironmentObject var userInfo : UserInfo
     @State private var userIsLoggedIn = false
     
     var body: some View {
@@ -28,21 +25,21 @@ struct BrandInfoView: View {
                         Text("What is your brand’s")
                         Text("mission? ").foregroundColor(.blue.opacity(0.4))
                     }.offset(x: 25)
-                    RoundedTextField(title: "Type here...", text: $mission).offset(y: -15)
+                    RoundedTextField(title: "Type here...", text: $userInfo.mission).offset(y: -15)
                 }
                 VStack(alignment: .leading) {
                     HStack {
                         Text("What is your brand’s")
                         Text("values? ").foregroundColor(.blue.opacity(0.4))
                     }.offset(x: 25)
-                    RoundedTextField(title: "Type here...", text: $values).offset(y: -15)
+                    RoundedTextField(title: "Type here...", text: $userInfo.values).offset(y: -15)
                 }
                 VStack(alignment: .leading) {
                     HStack {
                         Text("What is your")
                         Text("competitive advantage? ").foregroundColor(.blue.opacity(0.4))
                     }.offset(x: 25)
-                    RoundedTextField(title: "Type here...", text: $advantage).offset(y: -15)
+                    RoundedTextField(title: "Type here...", text: $userInfo.advantage).offset(y: -15)
                 }
             }
             .frame(width: 350)

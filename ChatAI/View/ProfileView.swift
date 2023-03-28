@@ -7,7 +7,7 @@
 
 import SwiftUI
 struct ProfileView: View {
-    
+
     var name = "Name"
     var brandName = "Brand Name"
     @State private var showSheet = false
@@ -91,15 +91,34 @@ struct ProfileView: View {
     }
 }
 struct PopupView: View {
-    
+    //these arrays below will be populated from the database but this will do for now
+    var instagram = ["apple", "banana", "orange"]
+    var facebook = ["apple", "banana", "orange"]
+    var twitter = ["apple", "banana", "orange"]
     @Binding var showSheet: Bool
     
     var body: some View {
         
         VStack {
             Text("MY MARKETING STRATEGY")
-                .padding(.top, 50)
-            Spacer()
+                .padding(.top,   10)
+                
+            Text("Insta Inspo")
+//                .padding(.top, -80)
+            
+            ScrollView {
+                VStack(spacing: 10) {
+                    ForEach(instagram, id: \.self) { item in
+                        RoundedRectangle(cornerRadius: 10)
+                            .foregroundColor(Color("dairyBlue"))
+                         
+                            .frame(height: 50)
+                            .overlay(Text(item))
+                            .padding()
+                    }
+                }
+            }
+            .frame(width: 300, height: 100)
         }
         .frame(height: 330)
         .frame(width: UIScreen.main.bounds.width)

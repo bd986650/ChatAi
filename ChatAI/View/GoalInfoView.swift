@@ -8,9 +8,7 @@
 import SwiftUI
 struct GoalInfoView: View {
     
-    @State private var work = ""
-    @State private var goals = ""
-    @State private var expectation = ""
+    @EnvironmentObject var userInfo : UserInfo
     @State private var userIsLoggedIn = false
     
     var body: some View {
@@ -28,21 +26,21 @@ struct GoalInfoView: View {
                         Text("Enter your ")
                         Text("scope of work ").foregroundColor(.blue.opacity(0.4))
                     }.offset(x: 25)
-                    RoundedTextField(title: "Type here...", text: $work).offset(y: -15)
+                    RoundedTextField(title: "Type here...", text: $userInfo.work).offset(y: -15)
                 }
                 VStack(alignment: .leading) {
                     HStack {
                         Text("What are your ")
                         Text("marketing goals?").foregroundColor(.blue.opacity(0.4))
                     }.offset(x: 25)
-                    RoundedTextField(title: "Type here...", text: $goals).offset(y: -15)
+                    RoundedTextField(title: "Type here...", text: $userInfo.goals).offset(y: -15)
                 }
                 VStack(alignment: .leading) {
                     HStack {
                         Text("What are your ")
                         Text("expectations? ").foregroundColor(.blue.opacity(0.4))
                     }.offset(x: 25)
-                    RoundedTextField(title: "Type here...", text: $expectation).offset(y: -15)
+                    RoundedTextField(title: "Type here...", text: $userInfo.expectation).offset(y: -15)
                 }
             }
             .frame(width: 350)
