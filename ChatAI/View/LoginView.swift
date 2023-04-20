@@ -1,5 +1,6 @@
 import SwiftUI
 import Firebase
+
 struct LoginView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var email = ""
