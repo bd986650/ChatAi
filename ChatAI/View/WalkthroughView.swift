@@ -185,7 +185,7 @@ struct WalkthroughScreen: View {
     
     func sendMessage() {
         //get user for company name
-        dataManager.fetchCurrentUser()
+        
         let companyName = dataManager.users[0].businessName
         let messageText = "Write a content calendar for a company with this mission: " + userInfo.mission
         

@@ -157,6 +157,8 @@ struct SignupView: View {
                 }
                 //add to user db
                 dataManager.postUsers(Name: name, Email: email, BusinessName: businessName)
+                print("fetching user from sign up view")
+                dataManager.fetchCurrentUser()
             }
         } // register
 }

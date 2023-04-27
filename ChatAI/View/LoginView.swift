@@ -7,6 +7,7 @@ struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
     @State private var userIsLoggedIn = false
+    @State private var isFunctionPerformed = false
     var body: some View {
         ZStack {
             Color.white
@@ -45,6 +46,7 @@ struct LoginView: View {
                         RoundedRectangle(cornerRadius: 12)
                             .stroke(Color("dairyBlue"))
                     )
+         
                 
            /*Add back button here*/
                 
@@ -73,6 +75,7 @@ struct LoginView: View {
     
     
     func login() {
+        dataManager.fetchCurrentUser()
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
             if error != nil {
                 print(error!.localizedDescription)
@@ -86,7 +89,9 @@ struct LoginView: View {
             // No user is currently signed in
             print("No user is currently signed in")
         }
-        dataManager.fetchCurrentUser()
+        print("fetching user from login view")
+        
+        isFunctionPerformed = true
         
     } // login
     

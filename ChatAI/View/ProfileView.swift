@@ -59,11 +59,22 @@ struct ProfileView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 50)
-                        Text(name)
+//                        Text(name)
+//                        Text(brandName)
                         Text(brandName)
-                        //                        Text(dataManager.users[0].name)
-                        //                        Text(dataManager.users[0].businessName)
+                                   if dataManager.users.count > 0 {
+                                       Text(dataManager.users[0].name)
+                                       Text(dataManager.users[0].businessName)
+                                   } else {
+                                       Text("Loading...")
+                                   }
+                               
+                            
                     }
+                    .onAppear {
+                               // Fetch users data and update the dataManager's users property
+                               dataManager.fetchCurrentUser()
+                           }
                     //.offset(x: -50)
                     .fixedSize()
                 }
