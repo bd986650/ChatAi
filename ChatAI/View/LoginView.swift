@@ -3,6 +3,7 @@ import Firebase
 
 struct LoginView: View {
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var dataManager: DataManager
     @State private var email = ""
     @State private var password = ""
     @State private var userIsLoggedIn = false
@@ -23,7 +24,8 @@ struct LoginView: View {
                     NavigationLink("Sign up", value: Legal.signup)
                 }
                 
-                NavigationLink("SIGN IN", destination: ProfileandHomePageView().onAppear {
+                NavigationLink("SIGN IN", destination: ProfileandHomePageView()
+                    .onAppear {
                     self.login()
                 })
                     .padding(.vertical, 10)
@@ -63,6 +65,16 @@ struct LoginView: View {
                 print(error!.localizedDescription)
             }
         }
+        print("login")
+        if let userId = Auth.auth().currentUser?.uid {
+            // Do something with the user ID
+            print("Current user ID is: \(userId)")
+        } else {
+            // No user is currently signed in
+            print("No user is currently signed in")
+        }
+        dataManager.fetchCurrentUser()
+        
     } // login
     
 }

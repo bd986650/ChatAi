@@ -12,6 +12,7 @@ struct User: Identifiable {
     var name: String
     var email: String
     var businessName: String
+//    var image: Image
 }
 
 
