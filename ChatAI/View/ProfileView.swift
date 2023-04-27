@@ -9,49 +9,40 @@ import SwiftUI
 import FirebaseFirestore
 
 struct ProfileView: View {
+    @EnvironmentObject var dataManager: DataManager
     
     
     var name = "Sarah Apple"
     var brandName = "Upcycle Athens"
     @State private var showSheet = false
     @Binding var currentView: Int
-    
-    //start of db code
-    let db = Firestore.firestore()
-    func readData() {
-        let docRef = db.document("dairymarket/profileInfo")
-        docRef.getDocument{ snapshot, error in
-            guard let data = snapshot?.data(), error == nil else {
-                return
-            }
-            
-            print(data)
-        }
-    } //readData
-    
-    func writeData(text: String) {
-        let docRef = db.document("dairymarket/profileInfo")
-        docRef.setData(["text": text])
-    } //writeData
-    //end of db code
 
     var body: some View {
         
-        VStack(spacing: 20) {
+        VStack(alignment: .center, spacing: 20) {
             Spacer()
                 .frame(height: 5)
-            HStack(spacing: 20) {
-                Image(systemName: "person.circle")
+            ZStack {
+                Image(systemName: "square")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 50)
-                
-                Text(name + " / " + brandName)
-            }
-            .offset(x: -50)
+                    .frame(width: 300, height: 300)
+                    
+                VStack(alignment: .center, spacing: 20) {
+                    Image(systemName: "person.circle")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 50)
+//                    Text(dataManager.users[0].name)
+                    Text(name)
+                    Text(brandName)
+                }
+                //.offset(x: -50)
             .fixedSize()
-            
-            Text("MY PROJECTS")
+            }
+            Spacer()
+                .frame(height: 10)
+            Text("ADD PROJECT")
                 .foregroundColor(.blue)
                 .padding(.vertical, 10)
                 .padding(.horizontal, 40)
@@ -63,53 +54,85 @@ struct ProfileView: View {
             
             HStack {
                 VStack(alignment: .center) {
-                    Text("BRAND")
+                    Text("INSTA CAPTIONS")
                         .frame(height: 30)
-                    Text("MARKETING GOALS")
+                    Text("FB POSTS")
                         .frame(height: 30)
-                    Text("CUSTOMER")
+                    Text("TWEETS")
                         .frame(height: 30)
-                    Text("CREATIVE DIRECTION")
-                        .frame(height: 30)
+//                    Text("CREATIVE DIRECTION")
+//                        .frame(height: 30)
                 }
                 
                 VStack {
-                    ForEach((0...3), id: \.self) { i in
-                        HStack {
-                            Text("view")
-                                .font(.system(size: 14))
-                                .padding(.vertical, 5)
-                                .frame(width: 60)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 20)
-                                        .stroke(.blue)
-                                )
-                            Text("modify")
-                                .font(.system(size: 14))
-                                .padding(.vertical, 5)
-                                .frame(width: 60)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 20)
-                                        .stroke(.blue)
-                                )
-                        }
-                        .frame(height: 30)
+                ForEach((0...2), id: \.self) { i in
+                    HStack {
+                        Text("view")
+                            .font(.system(size: 15))
+                            .padding(.vertical, 7)
+                            .frame(width: 100)
+                            .background(
+                                RoundedRectangle(cornerRadius: 20)
+                                    .stroke(.blue)
+                            )
+                            .onTapGesture {
+                                withAnimation {
+                                    self.showSheet.toggle()
+                                    
+                                }
+                            }
+                            .sheet(isPresented: $showSheet) {
+                                PopupView(showSheet: $showSheet)
+                            }
+                        //                    Text("modify")
+                        //                        .font(.system(size: 14))
+                        //                        .padding(.vertical, 5)
+                        //                        .frame(width: 60)
+                        //                        .background(
+                        //                            RoundedRectangle(cornerRadius: 20)
+                        //                                .stroke(.blue)
+                        //                        )
                     }
                 }
+                    .frame(height: 30)
+                }
+//                VStack {
+//                    ForEach((0...3), id: \.self) { i in
+//                        HStack {
+//                            Text("view")
+//                                .font(.system(size: 14))
+//                                .padding(.vertical, 5)
+//                                .frame(width: 60)
+//                                .background(
+//                                    RoundedRectangle(cornerRadius: 20)
+//                                        .stroke(.blue)
+//                                )
+//                            Text("modify")
+//                                .font(.system(size: 14))
+//                                .padding(.vertical, 5)
+//                                .frame(width: 60)
+//                                .background(
+//                                    RoundedRectangle(cornerRadius: 20)
+//                                        .stroke(.blue)
+//                                )
+//                        }
+//                        .frame(height: 30)
+//                    }
+//                }
             }
             
             Spacer()
-            Text("View my marketing strategy")
-                .foregroundColor(.blue)
-                .onTapGesture {
-                    withAnimation {
-                        self.showSheet.toggle()
-                       
-                    }
-                }
-                .sheet(isPresented: $showSheet) {
-                    PopupView(showSheet: $showSheet)
-                }
+//            Text("View my marketing strategy")
+//                .foregroundColor(.blue)
+//                .onTapGesture {
+//                    withAnimation {
+//                        self.showSheet.toggle()
+//
+//                    }
+//                }
+//                .sheet(isPresented: $showSheet) {
+//                    PopupView(showSheet: $showSheet)
+//                }
             Spacer()
                 .frame(height: 100)
 //            PopupView(showSheet: $showSheet)
@@ -130,7 +153,7 @@ struct PopupView: View {
             Text("MY MARKETING STRATEGY")
                 .padding(.top,   40)
                 
-            Text("Insta Inspo")
+            Text("Insta Captions")
                 .padding(.top, 20)
             
             ScrollView {
@@ -154,13 +177,13 @@ struct PopupView: View {
             Button("Dismiss") {
                 self.showSheet.toggle()
                      }
-            .foregroundColor(Color("dairyBlue"))
+            .foregroundColor(Color("cheddarChzOrange"))
             
             Spacer()
         }
         .frame(height: 960)
         .frame(width: UIScreen.main.bounds.width)
-        .background(.gray)
+        .background(.white)
 //        .clipShape(RoundedRectangle(cornerRadius: 80))
         .offset(y: (showSheet ? 100 : 500))
     }
@@ -181,8 +204,10 @@ extension String {
     }
 }
 struct ProfileView_Previews: PreviewProvider {
+    static let dataManager = DataManager()
     static var previews: some View {
         ProfileView(currentView: .constant(0))
+            .environmentObject(dataManager)
     }
 }
 

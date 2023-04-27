@@ -7,12 +7,14 @@
 
 import SwiftUI
 struct ProfileandHomePageView: View {
+    @EnvironmentObject var dataManager: DataManager
     @State var currentView = 0
     var body: some View {
         NavigationView {
             ZStack {
                 if currentView == 0 {
                     ProfileView(currentView: $currentView)
+                        .environmentObject(dataManager)
                 } else {
                     HomePageView(currentView: $currentView)
                 }

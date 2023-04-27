@@ -2,19 +2,19 @@
 
 import SwiftUI
 import Firebase
+import FirebaseAuth
+import FirebaseFirestore
 
 @main
 struct ChatAIApp: App {
+    @StateObject var dataManager = DataManager()
     init() {
         FirebaseApp.configure()
-//        let Database = Firebase.
-//        let databaseRef = Database.database().reference()
     }
     var body: some Scene {
         WindowGroup {
-//            HomeView(viewModel: ViewModel())
             SplashView()
-//                .environmentObject(databaseRef)
+                .environmentObject(dataManager)
         }
     }
 }

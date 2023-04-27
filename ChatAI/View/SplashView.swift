@@ -17,6 +17,7 @@ enum Legal: Identifiable {
 }
 
 struct SplashView: View {
+    @EnvironmentObject var dataManager: DataManager
    
     var body: some View {
         NavigationStack {
@@ -63,6 +64,7 @@ struct SplashView: View {
                     WalkthroughView()
                 case .profile:
                     ProfileandHomePageView()
+                        .environmentObject(dataManager)
                 }
             }
             .edgesIgnoringSafeArea(.all)

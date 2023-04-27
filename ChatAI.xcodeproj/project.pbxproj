@@ -23,6 +23,10 @@
 		1AC094B3297AD65200022EF3 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC094B2297AD65200022EF3 /* Model.swift */; };
 		1AC094B5297AD72700022EF3 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC094B4297AD72700022EF3 /* HomeView.swift */; };
 		A61FCC7E29D0CE4100BADCC1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A61FCC7D29D0CE4100BADCC1 /* GoogleService-Info.plist */; };
+		A656B71829FA0D2000498C08 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A656B71729FA0D2000498C08 /* User.swift */; };
+		A656B71A29FA0E1600498C08 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A656B71929FA0E1600498C08 /* DataManager.swift */; };
+		A656B71D29FA137D00498C08 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A656B71C29FA137C00498C08 /* FirebaseFirestoreSwift */; };
+		A656B71F29FA138C00498C08 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A656B71E29FA138C00498C08 /* FirebaseStorage */; };
 		A66389EC29A7C7500028BD58 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66389EB29A7C7500028BD58 /* ProfileView.swift */; };
 		A66389EE29A7D6BD0028BD58 /* CaptionGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66389ED29A7D6BD0028BD58 /* CaptionGenerator.swift */; };
 		A6A4831C29A5671A00061BF9 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A4831B29A5671A00061BF9 /* SignupView.swift */; };
@@ -59,6 +63,8 @@
 		1AC094B2297AD65200022EF3 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		1AC094B4297AD72700022EF3 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		A61FCC7D29D0CE4100BADCC1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A656B71729FA0D2000498C08 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A656B71929FA0E1600498C08 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		A66389EB29A7C7500028BD58 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A66389ED29A7D6BD0028BD58 /* CaptionGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionGenerator.swift; sourceTree = "<group>"; };
 		A6A4831B29A5671A00061BF9 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
@@ -84,6 +90,8 @@
 				1AC094AA297AC93600022EF3 /* Alamofire in Frameworks */,
 				A6B3256B29A52F43005D2796 /* FirebaseAuth in Frameworks */,
 				A6B3256D29A52F43005D2796 /* FirebaseFirestore in Frameworks */,
+				A656B71F29FA138C00498C08 /* FirebaseStorage in Frameworks */,
+				A656B71D29FA137D00498C08 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +138,7 @@
 			children = (
 				1AC09497297AC64400022EF3 /* ChatAI */,
 				1AC09496297AC64400022EF3 /* Products */,
+				A656B71B29FA137C00498C08 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -188,6 +197,8 @@
 				A6BFE29629C3B82800446F69 /* WalkthroughView.swift */,
 				A6BFE29829C3B89500446F69 /* ProfileandHomePageView.swift */,
 				A6BFE29A29C3B91300446F69 /* HomePageView.swift */,
+				A656B71729FA0D2000498C08 /* User.swift */,
+				A656B71929FA0E1600498C08 /* DataManager.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -215,6 +226,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		A656B71B29FA137C00498C08 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -235,6 +253,8 @@
 				1AC094A9297AC93600022EF3 /* Alamofire */,
 				A6B3256A29A52F43005D2796 /* FirebaseAuth */,
 				A6B3256C29A52F43005D2796 /* FirebaseFirestore */,
+				A656B71C29FA137C00498C08 /* FirebaseFirestoreSwift */,
+				A656B71E29FA138C00498C08 /* FirebaseStorage */,
 			);
 			productName = ChatAI;
 			productReference = 1AC09495297AC64400022EF3 /* ChatAI.app */;
@@ -295,6 +315,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A656B71A29FA0E1600498C08 /* DataManager.swift in Sources */,
 				1A2A19DE297BAE8800B0FF9A /* FirstMessageView.swift in Sources */,
 				A6A4832229A58C6A00061BF9 /* CustomerInfoView.swift in Sources */,
 				A6A4832029A58B4F00061BF9 /* GoalInfoView.swift in Sources */,
@@ -315,6 +336,7 @@
 				1A2A19DC297BAE2700B0FF9A /* ChatIconView.swift in Sources */,
 				1A7E9EFE297C20720083CFEB /* Extensions.swift in Sources */,
 				1AC094B5297AD72700022EF3 /* HomeView.swift in Sources */,
+				A656B71829FA0D2000498C08 /* User.swift in Sources */,
 				1AC094A7297AC6A200022EF3 /* Constants.swift in Sources */,
 				A66389EC29A7C7500028BD58 /* ProfileView.swift in Sources */,
 				A6BFE29529C3B5C800446F69 /* RoundedTextField.swift in Sources */,
@@ -553,6 +575,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1AC094A8297AC93600022EF3 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		A656B71C29FA137C00498C08 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A6B3256929A52F43005D2796 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+		A656B71E29FA138C00498C08 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A6B3256929A52F43005D2796 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
 		};
 		A6B3256A29A52F43005D2796 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
