@@ -6,30 +6,43 @@
 //
 
 import SwiftUI
-struct ProfileView: View {
+import FirebaseFirestore
 
-    var name = "Name"
-    var brandName = "Brand Name"
+struct ProfileView: View {
+    @EnvironmentObject var dataManager: DataManager
+    
+    
+    var name = "Sarah Apple"
+    var brandName = "Upcycle Athens"
     @State private var showSheet = false
     @Binding var currentView: Int
-    
 
     var body: some View {
         
-        VStack(spacing: 20) {
+        VStack(alignment: .center, spacing: 20) {
             Spacer()
-            HStack(spacing: 20) {
-                Image(systemName: "person.circle")
+                .frame(height: 5)
+            ZStack {
+                Image(systemName: "square")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 50)
-                
-                Text(name + " / " + brandName)
-            }
-            .offset(x: -50)
+                    .frame(width: 300, height: 300)
+                    
+                VStack(alignment: .center, spacing: 20) {
+                    Image(systemName: "person.circle")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 50)
+//                    Text(dataManager.users[0].name)
+                    Text(name)
+                    Text(brandName)
+                }
+                //.offset(x: -50)
             .fixedSize()
-            
-            Text("MY PROJECTS")
+            }
+            Spacer()
+                .frame(height: 10)
+            Text("ADD PROJECT")
                 .foregroundColor(.blue)
                 .padding(.vertical, 10)
                 .padding(.horizontal, 40)
@@ -41,54 +54,87 @@ struct ProfileView: View {
             
             HStack {
                 VStack(alignment: .center) {
-                    Text("BRAND")
+                    Text("INSTA CAPTIONS")
                         .frame(height: 30)
-                    Text("MARKETING GOALS")
+                    Text("FB POSTS")
                         .frame(height: 30)
-                    Text("CUSTOMER")
+                    Text("TWEETS")
                         .frame(height: 30)
-                    Text("CREATIVE DIRECTION")
-                        .frame(height: 30)
+//                    Text("CREATIVE DIRECTION")
+//                        .frame(height: 30)
                 }
                 
                 VStack {
-                    ForEach((0...3), id: \.self) { i in
-                        HStack {
-                            Text("view")
-                                .font(.system(size: 14))
-                                .padding(.vertical, 5)
-                                .frame(width: 60)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 20)
-                                        .stroke(.blue)
-                                )
-                            Text("modify")
-                                .font(.system(size: 14))
-                                .padding(.vertical, 5)
-                                .frame(width: 60)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 20)
-                                        .stroke(.blue)
-                                )
-                        }
-                        .frame(height: 30)
+                ForEach((0...2), id: \.self) { i in
+                    HStack {
+                        Text("view")
+                            .font(.system(size: 15))
+                            .padding(.vertical, 7)
+                            .frame(width: 100)
+                            .background(
+                                RoundedRectangle(cornerRadius: 20)
+                                    .stroke(.blue)
+                            )
+                            .onTapGesture {
+                                withAnimation {
+                                    self.showSheet.toggle()
+                                    
+                                }
+                            }
+                            .sheet(isPresented: $showSheet) {
+                                PopupView(showSheet: $showSheet)
+                            }
+                        //                    Text("modify")
+                        //                        .font(.system(size: 14))
+                        //                        .padding(.vertical, 5)
+                        //                        .frame(width: 60)
+                        //                        .background(
+                        //                            RoundedRectangle(cornerRadius: 20)
+                        //                                .stroke(.blue)
+                        //                        )
                     }
                 }
+                    .frame(height: 30)
+                }
+//                VStack {
+//                    ForEach((0...3), id: \.self) { i in
+//                        HStack {
+//                            Text("view")
+//                                .font(.system(size: 14))
+//                                .padding(.vertical, 5)
+//                                .frame(width: 60)
+//                                .background(
+//                                    RoundedRectangle(cornerRadius: 20)
+//                                        .stroke(.blue)
+//                                )
+//                            Text("modify")
+//                                .font(.system(size: 14))
+//                                .padding(.vertical, 5)
+//                                .frame(width: 60)
+//                                .background(
+//                                    RoundedRectangle(cornerRadius: 20)
+//                                        .stroke(.blue)
+//                                )
+//                        }
+//                        .frame(height: 30)
+//                    }
+//                }
             }
             
             Spacer()
-            
-            Text("View my marketing strategy")
-                .foregroundColor(.blue)
-                .onTapGesture {
-                    withAnimation {
-                        self.showSheet.toggle()
-                       
-                    }
-                }
-                .sheet(isPresented: $showSheet) {
-                    PopupView(showSheet: $showSheet)
-                }
+//            Text("View my marketing strategy")
+//                .foregroundColor(.blue)
+//                .onTapGesture {
+//                    withAnimation {
+//                        self.showSheet.toggle()
+//
+//                    }
+//                }
+//                .sheet(isPresented: $showSheet) {
+//                    PopupView(showSheet: $showSheet)
+//                }
+            Spacer()
+                .frame(height: 100)
 //            PopupView(showSheet: $showSheet)
         }
         .frame(width: 350)
@@ -96,7 +142,7 @@ struct ProfileView: View {
 }
 struct PopupView: View {
     //these arrays below will be populated from the database but this will do for now
-    var instagram = ["A carousel post featuring high-quality images of their unique and new milk flavors, showcasing their competitive advantage.", "A before and after post featuring an image of a customer's coffee without their milk, and then another image of their coffee after adding their milk, highlighting the freshest milk aspect of their mission.", "A video post showcasing the process of how their milk is made, emphasizing their commitment to freshness.", "A throwback post featuring a vintage milkman image, tying into their message to bring back the classic milkman and retro style.", "A user-generated content post featuring images and reviews from satisfied customers, fostering a familial vibe with their followers.", "An inspirational quote post with a message about taking a moment to enjoy the simple pleasures in life, featuring an image of their milk product.", "A behind-the-scenes post featuring images of their team working hard to deliver the freshest milk, highlighting their value of speed.", "A post showcasing their involvement in the local community, such as participating in a farmers market or sponsoring a local event, emphasizing their marketing goal to reach their local community.","A creative post featuring their milk product in a unique and unexpected way, such as creating latte art with their milk flavors.", "A poll post asking followers to vote for their favorite unique milk flavor or suggest new flavor ideas, encouraging engagement and interaction with their audience."]
+    var instagram = ["Hey Sustainable Trendsetters! We are excited to launch our eco-friendly clothing line that incorporates the latest fashion trends while keeping the planet in mind.", " Quality stitching is our top priority, and we are confident you'll love the unique pieces we offer at affordable prices.", "Our mission is to make a positive impact on the environment and encourage sustainable fashion choices.", "We are excited to introduce ourselves to the UGA community and would love your support in spreading the word about our brand.", "For those who are hesitant about the quality of our clothes, we can guarantee that they are made to last and endure the test of time.", "We want to encourage upcycling within the UGA community by offering a program where you can trade in your old clothes for a discount on our clothing line.", "Our target customers are women aged 18-25 who value sustainability and staying on top of the latest fashion trends.", "We understand the importance of social media presence and are committed to showcasing our clothing line through beautiful and modern posts.","Join us in our mission to save the planet one dress at a time. Let's make a difference together.", "We can't wait to see you rocking our sustainable and stylish clothing pieces. Together, let's make a positive impact on the environment while staying on-trend."]
     var facebook = ["apple", "banana", "orange"]
     var twitter = ["apple", "banana", "orange"]
     @Binding var showSheet: Bool
@@ -107,7 +153,7 @@ struct PopupView: View {
             Text("MY MARKETING STRATEGY")
                 .padding(.top,   40)
                 
-            Text("Insta Inspo")
+            Text("Insta Captions")
                 .padding(.top, 20)
             
             ScrollView {
@@ -131,13 +177,13 @@ struct PopupView: View {
             Button("Dismiss") {
                 self.showSheet.toggle()
                      }
-            .foregroundColor(Color("dairyBlue"))
+            .foregroundColor(Color("cheddarChzOrange"))
             
             Spacer()
         }
         .frame(height: 960)
         .frame(width: UIScreen.main.bounds.width)
-        .background(.gray)
+        .background(.white)
 //        .clipShape(RoundedRectangle(cornerRadius: 80))
         .offset(y: (showSheet ? 100 : 500))
     }
@@ -147,7 +193,7 @@ struct PopupView: View {
 func getHeight(for text: String) -> CGFloat {
     let textHeight = text.height(withConstrainedWidth: UIScreen.main.bounds.width - 20, font: .systemFont(ofSize: 17, weight: .regular))
     
-    return textHeight + 70 // add some padding for the text
+    return textHeight + 90 // add some padding for the text
 }
 
 extension String {
@@ -158,8 +204,10 @@ extension String {
     }
 }
 struct ProfileView_Previews: PreviewProvider {
+    static let dataManager = DataManager()
     static var previews: some View {
         ProfileView(currentView: .constant(0))
+            .environmentObject(dataManager)
     }
 }
 

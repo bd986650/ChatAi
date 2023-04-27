@@ -34,6 +34,7 @@ struct CheckboxToggleStyle: ToggleStyle {
 struct SignupView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var name = ""
+    @State private var businessName = ""
     @State private var email = ""
     @State private var password = ""
     @State private var passwordConfirm = ""
@@ -55,6 +56,7 @@ struct SignupView: View {
                 // name field
                 Group {
                     RoundedTextField(title: "Name", text: $name)
+                    RoundedTextField(title: "Business Name", text: $businessName)
                     RoundedTextField(title: "Email", text: $email)
                     RoundedTextField(title: "Password", text: $password, type: 1)
                     RoundedTextField(title: "Re-Type Password", text: $passwordConfirm, type: 1)
