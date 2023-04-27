@@ -387,14 +387,3 @@ class DataManager: ObservableObject {
     }
     
 }
-////
-////    func addUser(business: String) {
-////        let db = Firestore.firestore()
-////        let ref = db.collection("Users").document(business)
-////        ref.setData(["Business": business, "ID": 10]) {error in
-////            if let error = error {
-////                print(error.localizedDescription)
-////            }
-////        }
-////    }
-////}
