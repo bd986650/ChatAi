@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import Firebase
 import FirebaseFirestore
 
 struct ProfileView: View {
+    @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var dataManager: DataManager
     
     let types: [Int] = [0, 1, 2]
@@ -82,7 +84,7 @@ struct ProfileView: View {
                                     .frame(width: 100)
                                     .background(
                                         RoundedRectangle(cornerRadius: 20)
-                                            .stroke(.blue)
+                                            .stroke(Color("dairyBlue"))
                                     )
                                     .onTapGesture {
                                         dataManager.fetchInstagrams()
@@ -102,14 +104,14 @@ struct ProfileView: View {
                                 Text("FB POSTS")
                                     .frame(height: 30)
                                 Spacer()
-                                    .frame(width: 70)
+                                    .frame(width: 75)
                                 Text("view")
                                     .font(.system(size: 15))
                                     .padding(.vertical, 7)
                                     .frame(width: 100)
                                     .background(
                                         RoundedRectangle(cornerRadius: 20)
-                                            .stroke(.blue)
+                                            .stroke(Color("dairyBlue"))
                                     )
                                     .onTapGesture {
                                         dataManager.fetchFacebooks()
@@ -132,14 +134,14 @@ struct ProfileView: View {
                                 Text("TWEETS")
                                     .frame(height: 30)
                                 Spacer()
-                                    .frame(width: 80)
+                                    .frame(width: 90)
                                 Text("view")
                                     .font(.system(size: 15))
                                     .padding(.vertical, 7)
                                     .frame(width: 100)
                                     .background(
                                         RoundedRectangle(cornerRadius: 20)
-                                            .stroke(.blue)
+                                            .stroke(Color("dairyBlue"))
                                     )
                                     .onTapGesture {
                                         dataManager.fetchTwitters()
@@ -157,8 +159,57 @@ struct ProfileView: View {
                             }
                             
                             .frame(height: 30)
-//                        }
-//                    }
+                            HStack {
+                                Text("MARKETING BRIEF")
+                                    .frame(height: 30)
+                                Spacer()
+                                    .frame(width: 10)
+                                Text("view")
+                                    .font(.system(size: 15))
+                                    .padding(.vertical, 7)
+                                    .frame(width: 100)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 20)
+                                            .stroke(Color("dairyBlue"))
+                                    )
+                                    .onTapGesture {
+                                        //dataManager.fetchTwitters()
+                                        withAnimation {
+                                            self.showSheet3.toggle()
+                                            
+                                            
+                                        }
+                                    }
+                                    .sheet(isPresented: $showSheet3) {
+                                        PopupViewTwitter(type: 2, showSheet3: $showSheet3)
+                                            .environmentObject(dataManager)
+                                    }
+                                
+                            }
+                            .frame(height: 30)
+                            HStack {
+//                                Text("LOGOUT")
+//                                    .frame(height: 30)
+//                                Spacer()
+//                                    .frame(width: 85)
+                                Text("LOGOUT")
+                                    .font(.system(size: 15))
+                                    .padding(.vertical, 7)
+                                    .frame(width: 100)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 20)
+                                            .stroke(Color("dairyGold"))
+                                    )
+                                    .onTapGesture {
+//                                        logout()
+                                        presentationMode.wrappedValue.dismiss()
+                                    }
+                                    .sheet(isPresented: $showSheet3) {
+                                        PopupViewTwitter(type: 2, showSheet3: $showSheet3)
+                                            .environmentObject(dataManager)
+                                    }
+                                
+                            }
                 }
                 .frame(width: 350)
                 Spacer()
@@ -325,7 +376,6 @@ struct ProfileView: View {
             .offset(y: (showSheet3 ? 100 : 500))
         }
         
-        
     }
     func getHeight(for text: String) -> CGFloat {
         let textHeight = text.height(withConstrainedWidth: UIScreen.main.bounds.width - 20, font: .systemFont(ofSize: 17, weight: .regular))
@@ -341,6 +391,16 @@ struct ProfileView: View {
             return ceil(boundingBox.height)
         }
     }
+
+func logout() {
+    do {
+        try Auth.auth().signOut()
+        // Additional actions after successful logout
+    } catch let signOutError as NSError {
+        print("Error signing out: %@", signOutError)
+    }
+}
+
     struct ProfileView_Previews: PreviewProvider {
         static let dataManager = DataManager()
         static var previews: some View {
