@@ -63,10 +63,13 @@ struct SplashView: View {
                 switch selection {
                 case .signin:
                     LoginView().navigationBarBackButtonHidden(true)
+                        .environmentObject(dataManager)
                 case .signup:
                     SignupView().navigationBarBackButtonHidden(true)
+                        .environmentObject(dataManager)
                 case .brand:
                     WalkthroughView()
+                        .environmentObject(dataManager)
                 case .profile:
                     ProfileandHomePageView()
                         .environmentObject(dataManager)

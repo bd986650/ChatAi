@@ -11,10 +11,12 @@ import FirebaseFirestore
 struct ProfileView: View {
     @EnvironmentObject var dataManager: DataManager
     
-    
+    let types: [Int] = [0, 1, 2]
     var name = "Sarah Apple"
     var brandName = "Upcycle Athens"
     @State private var showSheet = false
+    @State private var showSheet2 = false
+    @State private var showSheet3 = false
     @Binding var currentView: Int
 
     var body: some View {
@@ -35,6 +37,36 @@ struct ProfileView: View {
                     Image(systemName: "square")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
+                        .frame(width: 50)
+                    Text(dataManager.users[0].name)
+                    
+                    Text(dataManager.users[0].businessName)
+                }
+                //.offset(x: -50)
+            .fixedSize()
+            }
+            Spacer()
+                .frame(height: 10)
+            Text("ADD PROJECT")
+                .foregroundColor(.blue)
+                .padding(.vertical, 10)
+                .padding(.horizontal, 40)
+                .frame(width: 200)
+                .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(.blue)
+                )
+            
+            HStack {
+                VStack(alignment: .center) {
+                    Text("INSTA CAPTIONS")
+                        .frame(height: 30)
+                    Text("FB POSTS")
+                        .frame(height: 30)
+                    Text("TWEETS")
+                        .frame(height: 30)
+//                    Text("CREATIVE DIRECTION")
+//                        .frame(height: 30)
                         .frame(width: 300, height: 300)
                         .overlay(
                                 LinearGradient(
@@ -60,118 +92,120 @@ struct ProfileView: View {
                     }
                     //.offset(x: -50)
                 .fixedSize()
-                }
-                Spacer()
-                    .frame(height: 10)
-    //            Text("ADD PROJECT")
-    //                .foregroundColor(.blue)
-    //                .padding(.vertical, 10)
-    //                .padding(.horizontal, 40)
-    //                .frame(width: 200)
-    //                .background(
-    //                    RoundedRectangle(cornerRadius: 12)
-    //                        .stroke(.blue)
-    //                )
                 
-                HStack {
-                    VStack(alignment: .center, spacing: 20) {
-                        Text("INSTA CAPTIONS")
-                            .frame(height: 30)
-                            .bold()
-                        Text("FB POSTS")
-                            .frame(height: 30)
-                            .bold()
-                        Text("TWEETS")
-                            .frame(height: 30)
-                            .bold()
-                        Text("MARKETING BRIEF")
-                            .frame(height: 30)
-                            .bold()
+
+                VStack {
+    
+                    HStack {
+                        Text("view")
+                            .font(.system(size: 15))
+                            .padding(.vertical, 7)
+                            .frame(width: 100)
+                            .background(
+                                RoundedRectangle(cornerRadius: 20)
+                                    .stroke(.blue)
+                            )
+                            .onTapGesture {
+                                dataManager.fetchInstagrams()
+                                withAnimation {
+                                    self.showSheet.toggle()
+                                
+                                    
+                                }
+                            }
+                            .sheet(isPresented: $showSheet) {
+                                PopupView(type: 0, showSheet: $showSheet)
+                                    .environmentObject(dataManager)
+                            }
+    
                     }
+                
+                    .frame(height: 30)
+                    HStack {
+                        Text("view")
+                            .font(.system(size: 15))
+                            .padding(.vertical, 7)
+                            .frame(width: 100)
+                            .background(
+                                RoundedRectangle(cornerRadius: 20)
+                                    .stroke(.blue)
+                            )
+                            .onTapGesture {
+                                dataManager.fetchFacebooks()
+                                withAnimation {
+                                    self.showSheet2.toggle()
+                            
+                                    
+                                }
+                            }
+                            .sheet(isPresented: $showSheet2) {
+                                PopupViewFacebook(type: 1, showSheet2: $showSheet2)
+                                    .environmentObject(dataManager)
+                            }
+    
+                    }
+                
+                    .frame(height: 30)
                     
-                    VStack(spacing: 20) {
-                    ForEach((0...3), id: \.self) { i in
-                        HStack{
-                            Text("view")
-                                .font(.system(size: 15))
-                                .padding(.vertical, 7)
-                                .frame(width: 100)
-                                .bold()
-                                .background(
-                                    RoundedRectangle(cornerRadius: 20)
-                                        .stroke(Color("dairyBlue"))
-                                )
-                                .onTapGesture {
-                                    withAnimation {
-                                        self.showSheet.toggle()
-                                        
-                                    }
+                    HStack {
+                        Text("view")
+                            .font(.system(size: 15))
+                            .padding(.vertical, 7)
+                            .frame(width: 100)
+                            .background(
+                                RoundedRectangle(cornerRadius: 20)
+                                    .stroke(.blue)
+                            )
+                            .onTapGesture {
+                                dataManager.fetchTwitters()
+                                withAnimation {
+                                    self.showSheet3.toggle()
+                                   
+                                    
                                 }
-                                .sheet(isPresented: $showSheet) {
-                                    PopupView(showSheet: $showSheet)
-                                }
-                            //                    Text("modify")
-                            //                        .font(.system(size: 14))
-                            //                        .padding(.vertical, 5)
-                            //                        .frame(width: 60)
-                            //                        .background(
-                            //                            RoundedRectangle(cornerRadius: 20)
-                            //                                .stroke(.blue)
-                            //                        )
-                        }
+                            }
+                            .sheet(isPresented: $showSheet3) {
+                                PopupViewTwitter(type: 2, showSheet3: $showSheet3)
+                                    .environmentObject(dataManager)
+                            }
+    
                     }
-                        .frame(height: 30)
-                    }
-    //                VStack {
-    //                    ForEach((0...3), id: \.self) { i in
-    //                        HStack {
-    //                            Text("view")
-    //                                .font(.system(size: 14))
-    //                                .padding(.vertical, 5)
-    //                                .frame(width: 60)
-    //                                .background(
-    //                                    RoundedRectangle(cornerRadius: 20)
-    //                                        .stroke(.blue)
-    //                                )
-    //                            Text("modify")
-    //                                .font(.system(size: 14))
-    //                                .padding(.vertical, 5)
-    //                                .frame(width: 60)
-    //                                .background(
-    //                                    RoundedRectangle(cornerRadius: 20)
-    //                                        .stroke(.blue)
-    //                                )
-    //                        }
-    //                        .frame(height: 30)
-    //                    }
-    //                }
-                }
                 
-                Spacer()
-    //            Text("View my marketing strategy")
-    //                .foregroundColor(.blue)
-    //                .onTapGesture {
-    //                    withAnimation {
-    //                        self.showSheet.toggle()
-    //
-    //                    }
-    //                }
-    //                .sheet(isPresented: $showSheet) {
-    //                    PopupView(showSheet: $showSheet)
-    //                }
-                Spacer()
-                    .frame(height: 100)
-    //            PopupView(showSheet: $showSheet)
+                    .frame(height: 30)
+                }
+//                VStack {
+//                    ForEach((0...3), id: \.self) { i in
+//                        HStack {
+//                            Text("view")
+//                                .font(.system(size: 14))
+//                                .padding(.vertical, 5)
+//                                .frame(width: 60)
+//                                .background(
+//                                    RoundedRectangle(cornerRadius: 20)
+//                                        .stroke(.blue)
+//                                )
+//                            Text("modify")
+//                                .font(.system(size: 14))
+//                                .padding(.vertical, 5)
+//                                .frame(width: 60)
+//                                .background(
+//                                    RoundedRectangle(cornerRadius: 20)
+//                                        .stroke(.blue)
+//                                )
+//                        }
+//                        .frame(height: 30)
+//                    }
+//                }
+
             }
             .frame(width: 350)
         }
     }
 }
 struct PopupView: View {
+    @EnvironmentObject var dataManager: DataManager
+    var type: Int
     //these arrays below will be populated from the database but this will do for now
-    var instagram = ["Hey Sustainable Trendsetters! We are excited to launch our eco-friendly clothing line that incorporates the latest fashion trends while keeping the planet in mind.", " Quality stitching is our top priority, and we are confident you'll love the unique pieces we offer at affordable prices.", "Our mission is to make a positive impact on the environment and encourage sustainable fashion choices.", "We are excited to introduce ourselves to the UGA community and would love your support in spreading the word about our brand.", "For those who are hesitant about the quality of our clothes, we can guarantee that they are made to last and endure the test of time.", "We want to encourage upcycling within the UGA community by offering a program where you can trade in your old clothes for a discount on our clothing line.", "Our target customers are women aged 18-25 who value sustainability and staying on top of the latest fashion trends.", "We understand the importance of social media presence and are committed to showcasing our clothing line through beautiful and modern posts.","Join us in our mission to save the planet one dress at a time. Let's make a difference together.", "We can't wait to see you rocking our sustainable and stylish clothing pieces. Together, let's make a positive impact on the environment while staying on-trend."]
-    var facebook = ["apple", "banana", "orange"]
-    var twitter = ["apple", "banana", "orange"]
     @Binding var showSheet: Bool
     
     var body: some View {
@@ -179,29 +213,34 @@ struct PopupView: View {
         VStack {
             Text("MY MARKETING STRATEGY")
                 .padding(.top,   40)
-                
+            
+        
             Text("Insta Captions")
                 .padding(.top, 20)
-            
-            ScrollView {
-                VStack(spacing: 10) {
-                    ForEach(instagram, id: \.self) { item in
-                        GeometryReader { geometry in
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 10)
-                                    .foregroundColor(Color("dairyBlue"))
-                                    .frame(width: geometry.size.width, height: geometry.size.height)
-                                Text(item)
-                                    .padding(20)
+           
+                ScrollView {
+                    VStack(spacing: 10) {
+                        ForEach(dataManager.instagrams) { item in
+                            GeometryReader { geometry in
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .foregroundColor(Color("DairyBlue"))
+                                        .frame(width: geometry.size.width, height: geometry.size.height)
+                                    Text(item.caption)
+                                        .padding(20)
+                                }
                             }
+                            .frame(height: getHeight(for: item.caption))
                         }
-                        .frame(height: getHeight(for: item))
                     }
                 }
-            }
-            .frame(width: 350, height: 560)
+                .frame(width: 350, height: 560)
+                
+          
+ 
 
             Button("Dismiss") {
+                print(type)
                 self.showSheet.toggle()
                      }
             .foregroundColor(Color("cheddarChzOrange"))
@@ -217,8 +256,115 @@ struct PopupView: View {
     
     
 }
+struct PopupViewFacebook: View {
+    @EnvironmentObject var dataManager: DataManager
+    var type: Int
+    //these arrays below will be populated from the database but this will do for now
+    @Binding var showSheet2: Bool
+    
+    var body: some View {
+        
+        VStack {
+            Text("MY MARKETING STRATEGY")
+                .padding(.top,   40)
+            
+        
+                Text("Facebook Posts")
+                    .padding(.top, 20)
+               
+                ScrollView {
+                    VStack(spacing: 10) {
+                        ForEach(dataManager.facebooks) { item in
+                            GeometryReader { geometry in
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .foregroundColor(Color("DairyBlue"))
+                                        .frame(width: geometry.size.width, height: geometry.size.height)
+                                    Text(item.caption)
+                                        .padding(20)
+                                }
+                            }
+                            .frame(height: getHeight(for: item.caption))
+                        }
+                    }
+                }
+                .frame(width: 350, height: 560)
+     
+     
+            Button("Dismiss") {
+                print(type)
+                self.showSheet2.toggle()
+                     }
+            .foregroundColor(Color("cheddarChzOrange"))
+            
+            Spacer()
+        }
+        .frame(height: 960)
+        .frame(width: UIScreen.main.bounds.width)
+        .background(.white)
+//        .clipShape(RoundedRectangle(cornerRadius: 80))
+        .offset(y: (showSheet2 ? 100 : 500))
+    }
+    
+    
+}
+struct PopupViewTwitter: View {
+    @EnvironmentObject var dataManager: DataManager
+    var type: Int
+    //these arrays below will be populated from the database but this will do for now
+    @Binding var showSheet3: Bool
+    
+    var body: some View {
+        
+        VStack {
+            Text("MY MARKETING STRATEGY")
+                .padding(.top,   40)
+            
+
+        
+         
+                Text("Tweets")
+                    .padding(.top, 20)
+               
+                ScrollView {
+                    VStack(spacing: 10) {
+                        ForEach(dataManager.twitters) { item in
+                            GeometryReader { geometry in
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .foregroundColor(Color("DairyBlue"))
+                                        .frame(width: geometry.size.width, height: geometry.size.height)
+                                    Text(item.caption)
+                                        .padding(20)
+                                }
+                            }
+                            .frame(height: getHeight(for: item.caption))
+                        }
+                    }
+                }
+                .frame(width: 350, height: 560)
+            
+
+            Button("Dismiss") {
+                print(type)
+                self.showSheet3.toggle()
+                     }
+            .foregroundColor(Color("cheddarChzOrange"))
+            
+            Spacer()
+        }
+        .frame(height: 960)
+        .frame(width: UIScreen.main.bounds.width)
+        .background(.white)
+//        .clipShape(RoundedRectangle(cornerRadius: 80))
+        .offset(y: (showSheet3 ? 100 : 500))
+    }
+    
+    
+}
 func getHeight(for text: String) -> CGFloat {
     let textHeight = text.height(withConstrainedWidth: UIScreen.main.bounds.width - 20, font: .systemFont(ofSize: 17, weight: .regular))
+//        print(text)
     
     return textHeight + 90 // add some padding for the text
 }

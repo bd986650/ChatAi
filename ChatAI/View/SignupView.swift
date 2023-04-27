@@ -33,6 +33,7 @@ struct CheckboxToggleStyle: ToggleStyle {
 
 struct SignupView: View {
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var dataManager: DataManager
     @State private var name = ""
     @State private var businessName = ""
     @State private var email = ""
@@ -42,6 +43,8 @@ struct SignupView: View {
     @State private var isShowingImagePicker = false
     @State private var userIsLoggedIn = false
     @State private var isAgree = false
+    @State var showNextPage = false
+
     var body: some View {
         ZStack {
             // insert background
@@ -49,7 +52,6 @@ struct SignupView: View {
             Image("signup_background")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-            
             
             ScrollView {
                 VStack{
@@ -129,7 +131,9 @@ struct SignupView: View {
                             RoundedRectangle(cornerRadius: 12)
                                 .stroke(Color("dairyBlue"))
                         )
+
                     }
+
                 }
                 .frame(width: 350)
             }
@@ -139,10 +143,20 @@ struct SignupView: View {
     }
     
         func register() {
-            Auth.auth().createUser(withEmail: email, password: password) { result, error in
-                if error != nil {
-                    print(error!.localizedDescription)
+            if (password != passwordConfirm) {
+                // Create a new alert
+          print("passwords no match")
+                
+
+            }
+            else {
+                Auth.auth().createUser(withEmail: email, password: password) { result, error in
+                    if error != nil {
+                        print(error!.localizedDescription)
+                    }
                 }
+                //add to user db
+                dataManager.postUsers(Name: name, Email: email, BusinessName: businessName)
             }
         } // register
 }
