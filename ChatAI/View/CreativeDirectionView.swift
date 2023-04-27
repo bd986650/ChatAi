@@ -20,21 +20,21 @@ struct CreativeDirectionView: View {
                 
                 VStack(alignment: .leading) {
                     HStack {
-                        Text("Enter your brand’s ")
+                        Text("Enter your brand’s")
                         Text("tone    ").foregroundColor(.blue.opacity(0.4))
                     }.offset(x: 25)
                     RoundedTextField(title: "Type here...", text: $userInfo.tone).offset(y: -15)
                 }
                 VStack(alignment: .leading) {
                     HStack {
-                        Text("Enter your brand’s ")
+                        Text("Enter your brand’s")
                         Text("message").foregroundColor(.blue.opacity(0.4))
                     }.offset(x: 25)
                     RoundedTextField(title: "Type here...", text: $userInfo.message).offset(y: -15)
                 }
                 VStack(alignment: .leading) {
                     HStack {
-                        Text("Enter your brand’s ")
+                        Text("Enter your brand’s")
                         Text("style ").foregroundColor(.blue.opacity(0.4))
                     }.offset(x: 25)
                     RoundedTextField(title: "Type here...", text: $userInfo.style).offset(y: -15)
@@ -45,7 +45,9 @@ struct CreativeDirectionView: View {
     }
 }
 struct CreativeDirectionView_Previews: PreviewProvider {
+    static let userInfo = UserInfo()
     static var previews: some View {
         CreativeDirectionView()
+            .environmentObject(userInfo)
     }
 }

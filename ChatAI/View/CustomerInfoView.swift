@@ -21,21 +21,21 @@ struct CustomerInfoView: View {
                 
                 VStack(alignment: .leading) {
                     HStack {
-                        Text("What is your ")
+                        Text("What is your")
                         Text("target customer’s age?   ").foregroundColor(.blue.opacity(0.4))
                     }.offset(x: 25)
                     RoundedTextField(title: "Type here...", text: $userInfo.age).offset(y: -15)
                 }
                 VStack(alignment: .leading) {
                     HStack {
-                        Text("Gender ")
+                        Text("Gender")
                         Text("identity?").foregroundColor(.blue.opacity(0.4))
                     }.offset(x: 25)
                     RoundedTextField(title: "Type here...", text: $userInfo.gender).offset(y: -15)
                 }
                 VStack(alignment: .leading) {
                     HStack {
-                        Text("In one sentence, ")
+                        Text("In one sentence,")
                         Text("who are they? ").foregroundColor(.blue.opacity(0.4))
                     }.offset(x: 25)
                     RoundedTextField(title: "Type here...", text: $userInfo.they).offset(y: -15)
@@ -46,7 +46,9 @@ struct CustomerInfoView: View {
     }
 }
 struct CustomerInfoView_Previews: PreviewProvider {
+    static let userInfo = UserInfo()
     static var previews: some View {
         CustomerInfoView()
+            .environmentObject(userInfo)
     }
 }

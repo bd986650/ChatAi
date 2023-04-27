@@ -91,7 +91,7 @@ struct HomeView: View {
             } label: {
                 Image("dairyLogo")
                     .resizable()
-                    .frame(width: 190, height: 150, alignment: .center)
+                    .frame(width: 100, height: 140, alignment: .center)
             }
     } // headerView
 
@@ -105,7 +105,7 @@ struct HomeView: View {
             Text(message.content)
                 .foregroundColor(message.sender == .user ? .black : .white)
                 .padding()
-                .background(message.sender == .user ? RoundedCorners(tl: 35, tr: 10, bl: 35, br: 35).fill(Color("dairyBlue")) : RoundedCorners(tl: 35, tr: 35, bl: 10, br: 35).fill(Color("cheddarChzOrange")))
+                .background(message.sender == .user ? RoundedCorners(tl: 35, tr: 10, bl: 35, br: 35).fill(.gray.opacity(0.2)) : RoundedCorners(tl: 35, tr: 35, bl: 10, br: 35).fill(Color("dairyBlue")))
             
             if message.sender == .chatAI {
                 Spacer()

@@ -19,125 +19,152 @@ struct ProfileView: View {
 
     var body: some View {
         
-        VStack(alignment: .center, spacing: 20) {
-            Spacer()
-                .frame(height: 5)
-            ZStack {
-                Image(systemName: "square")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 300, height: 300)
-                    
-                VStack(alignment: .center, spacing: 20) {
-                    Image(systemName: "person.circle")
+        ZStack {
+            Color.white
+            Image("signup_background")
+                .resizable()
+                .offset(y: 400)
+            Image("signup_background")
+                .resizable()
+                .offset(y: -400)
+                
+            VStack(alignment: .center, spacing: 20) {
+                Spacer()
+                    .frame(height: 5)
+                ZStack {
+                    Image(systemName: "square")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 50)
-//                    Text(dataManager.users[0].name)
-                    Text(name)
-                    Text(brandName)
+                        .frame(width: 300, height: 300)
+                        .overlay(
+                                LinearGradient(
+                                    gradient: Gradient(colors: [Color("dairyGold"), Color("dairyBlue")]),
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                )
+                                .mask(Image(systemName: "square")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .foregroundColor(.white)
+                                )
+                            )
+                        
+                    VStack(alignment: .center, spacing: 20) {
+                        Image(systemName: "person.circle")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 50)
+    //                    Text(dataManager.users[0].name)
+                        Text(name)
+                        Text(brandName)
+                    }
+                    //.offset(x: -50)
+                .fixedSize()
                 }
-                //.offset(x: -50)
-            .fixedSize()
-            }
-            Spacer()
-                .frame(height: 10)
-            Text("ADD PROJECT")
-                .foregroundColor(.blue)
-                .padding(.vertical, 10)
-                .padding(.horizontal, 40)
-                .frame(width: 200)
-                .background(
-                    RoundedRectangle(cornerRadius: 12)
-                        .stroke(.blue)
-                )
-            
-            HStack {
-                VStack(alignment: .center) {
-                    Text("INSTA CAPTIONS")
+                Spacer()
+                    .frame(height: 10)
+    //            Text("ADD PROJECT")
+    //                .foregroundColor(.blue)
+    //                .padding(.vertical, 10)
+    //                .padding(.horizontal, 40)
+    //                .frame(width: 200)
+    //                .background(
+    //                    RoundedRectangle(cornerRadius: 12)
+    //                        .stroke(.blue)
+    //                )
+                
+                HStack {
+                    VStack(alignment: .center, spacing: 20) {
+                        Text("INSTA CAPTIONS")
+                            .frame(height: 30)
+                            .bold()
+                        Text("FB POSTS")
+                            .frame(height: 30)
+                            .bold()
+                        Text("TWEETS")
+                            .frame(height: 30)
+                            .bold()
+                        Text("MARKETING BRIEF")
+                            .frame(height: 30)
+                            .bold()
+                    }
+                    
+                    VStack(spacing: 20) {
+                    ForEach((0...3), id: \.self) { i in
+                        HStack{
+                            Text("view")
+                                .font(.system(size: 15))
+                                .padding(.vertical, 7)
+                                .frame(width: 100)
+                                .bold()
+                                .background(
+                                    RoundedRectangle(cornerRadius: 20)
+                                        .stroke(Color("dairyBlue"))
+                                )
+                                .onTapGesture {
+                                    withAnimation {
+                                        self.showSheet.toggle()
+                                        
+                                    }
+                                }
+                                .sheet(isPresented: $showSheet) {
+                                    PopupView(showSheet: $showSheet)
+                                }
+                            //                    Text("modify")
+                            //                        .font(.system(size: 14))
+                            //                        .padding(.vertical, 5)
+                            //                        .frame(width: 60)
+                            //                        .background(
+                            //                            RoundedRectangle(cornerRadius: 20)
+                            //                                .stroke(.blue)
+                            //                        )
+                        }
+                    }
                         .frame(height: 30)
-                    Text("FB POSTS")
-                        .frame(height: 30)
-                    Text("TWEETS")
-                        .frame(height: 30)
-//                    Text("CREATIVE DIRECTION")
-//                        .frame(height: 30)
+                    }
+    //                VStack {
+    //                    ForEach((0...3), id: \.self) { i in
+    //                        HStack {
+    //                            Text("view")
+    //                                .font(.system(size: 14))
+    //                                .padding(.vertical, 5)
+    //                                .frame(width: 60)
+    //                                .background(
+    //                                    RoundedRectangle(cornerRadius: 20)
+    //                                        .stroke(.blue)
+    //                                )
+    //                            Text("modify")
+    //                                .font(.system(size: 14))
+    //                                .padding(.vertical, 5)
+    //                                .frame(width: 60)
+    //                                .background(
+    //                                    RoundedRectangle(cornerRadius: 20)
+    //                                        .stroke(.blue)
+    //                                )
+    //                        }
+    //                        .frame(height: 30)
+    //                    }
+    //                }
                 }
                 
-                VStack {
-                ForEach((0...2), id: \.self) { i in
-                    HStack {
-                        Text("view")
-                            .font(.system(size: 15))
-                            .padding(.vertical, 7)
-                            .frame(width: 100)
-                            .background(
-                                RoundedRectangle(cornerRadius: 20)
-                                    .stroke(.blue)
-                            )
-                            .onTapGesture {
-                                withAnimation {
-                                    self.showSheet.toggle()
-                                    
-                                }
-                            }
-                            .sheet(isPresented: $showSheet) {
-                                PopupView(showSheet: $showSheet)
-                            }
-                        //                    Text("modify")
-                        //                        .font(.system(size: 14))
-                        //                        .padding(.vertical, 5)
-                        //                        .frame(width: 60)
-                        //                        .background(
-                        //                            RoundedRectangle(cornerRadius: 20)
-                        //                                .stroke(.blue)
-                        //                        )
-                    }
-                }
-                    .frame(height: 30)
-                }
-//                VStack {
-//                    ForEach((0...3), id: \.self) { i in
-//                        HStack {
-//                            Text("view")
-//                                .font(.system(size: 14))
-//                                .padding(.vertical, 5)
-//                                .frame(width: 60)
-//                                .background(
-//                                    RoundedRectangle(cornerRadius: 20)
-//                                        .stroke(.blue)
-//                                )
-//                            Text("modify")
-//                                .font(.system(size: 14))
-//                                .padding(.vertical, 5)
-//                                .frame(width: 60)
-//                                .background(
-//                                    RoundedRectangle(cornerRadius: 20)
-//                                        .stroke(.blue)
-//                                )
-//                        }
-//                        .frame(height: 30)
-//                    }
-//                }
+                Spacer()
+    //            Text("View my marketing strategy")
+    //                .foregroundColor(.blue)
+    //                .onTapGesture {
+    //                    withAnimation {
+    //                        self.showSheet.toggle()
+    //
+    //                    }
+    //                }
+    //                .sheet(isPresented: $showSheet) {
+    //                    PopupView(showSheet: $showSheet)
+    //                }
+                Spacer()
+                    .frame(height: 100)
+    //            PopupView(showSheet: $showSheet)
             }
-            
-            Spacer()
-//            Text("View my marketing strategy")
-//                .foregroundColor(.blue)
-//                .onTapGesture {
-//                    withAnimation {
-//                        self.showSheet.toggle()
-//
-//                    }
-//                }
-//                .sheet(isPresented: $showSheet) {
-//                    PopupView(showSheet: $showSheet)
-//                }
-            Spacer()
-                .frame(height: 100)
-//            PopupView(showSheet: $showSheet)
+            .frame(width: 350)
         }
-        .frame(width: 350)
     }
 }
 struct PopupView: View {

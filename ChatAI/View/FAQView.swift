@@ -1,13 +1,13 @@
 //
-//  HomePageView.swift
+//  FAQView.swift
 //  ChatAI
 //
-//  Created by Aniyah Norman on 3/16/23.
+//  Created by Aniyah Norman on 4/27/23.
 //
 
 import SwiftUI
-struct HomePageView: View {
-    
+
+struct FAQView: View {
     @Binding var currentView: Int
     var body: some View {
         ScrollView {
@@ -17,28 +17,28 @@ struct HomePageView: View {
                     .fill(.gray)
                     .frame(width: 300, height: 160)
                     .overlay {
-                        Text("Article 1")
+                        Text("Article 4000")
                             .font(.system(size: 30))
                     }
                 RoundedRectangle(cornerRadius: 20)
                     .fill(.gray)
                     .frame(width: 300, height: 160)
                     .overlay {
-                        Text("Article 2")
+                        Text("Article 4000")
                             .font(.system(size: 30))
                     }
                 RoundedRectangle(cornerRadius: 20)
                     .fill(.gray)
                     .frame(width: 300, height: 160)
                     .overlay {
-                        Text("Article 3")
+                        Text("Article 4000")
                             .font(.system(size: 30))
                     }
                 RoundedRectangle(cornerRadius: 20)
                     .fill(.gray)
                     .frame(width: 300, height: 160)
                     .overlay {
-                        Text("Article 4")
+                        Text("Article 4000")
                             .font(.system(size: 30))
                     }
                 Spacer()
@@ -48,10 +48,8 @@ struct HomePageView: View {
     }
 }
 
-
-struct HomePageView_Previews: PreviewProvider {
+struct FAQView_Previews: PreviewProvider {
     static var previews: some View {
-        HomePageView(currentView: .constant(1))
+        FAQView(currentView: .constant(1))
     }
 }
-
