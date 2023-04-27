@@ -23,21 +23,21 @@ struct GoalInfoView: View {
                 
                 VStack(alignment: .leading) {
                     HStack {
-                        Text("Enter your ")
+                        Text("Enter your")
                         Text("scope of work ").foregroundColor(.blue.opacity(0.4))
                     }.offset(x: 25)
                     RoundedTextField(title: "Type here...", text: $userInfo.work).offset(y: -15)
                 }
                 VStack(alignment: .leading) {
                     HStack {
-                        Text("What are your ")
+                        Text("What are your")
                         Text("marketing goals?").foregroundColor(.blue.opacity(0.4))
                     }.offset(x: 25)
                     RoundedTextField(title: "Type here...", text: $userInfo.goals).offset(y: -15)
                 }
                 VStack(alignment: .leading) {
                     HStack {
-                        Text("What are your ")
+                        Text("What are your")
                         Text("expectations? ").foregroundColor(.blue.opacity(0.4))
                     }.offset(x: 25)
                     RoundedTextField(title: "Type here...", text: $userInfo.expectation).offset(y: -15)
@@ -48,7 +48,9 @@ struct GoalInfoView: View {
     }
 }
 struct GoalView_Previews: PreviewProvider {
+    static let userInfo = UserInfo()
     static var previews: some View {
         GoalInfoView()
+            .environmentObject(userInfo)
     }
 }

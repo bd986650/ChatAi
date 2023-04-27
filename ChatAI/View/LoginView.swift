@@ -16,24 +16,34 @@ struct LoginView: View {
             VStack (spacing: 20) {
                 
                 Image("signin")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .offset(y: 45)
+                    .frame(width:400, height: 200)
                 RoundedTextField(title: "Email", text: $email)
                 RoundedTextField(title: "Password", text: $password, type: 1)
                 
                 HStack {
                     Text("Don’t have an account?")
                     NavigationLink("Sign up", value: Legal.signup)
+                        .foregroundColor(Color("dairyBlue"))
+                        .bold()
                 }
                 
                 NavigationLink("SIGN IN", destination: ProfileandHomePageView()
+
+                    .navigationBarBackButtonHidden(true)
                     .onAppear {
                     self.login()
                 })
-                    .padding(.vertical, 10)
+                .foregroundColor(Color("dairyBlue"))
+                .padding(.vertical, 10)
                     .padding(.horizontal, 40)
                     .frame(width: 150)
+                    .bold()
                     .background(
                         RoundedRectangle(cornerRadius: 12)
-                            .stroke(.blue)
+                            .stroke(Color("dairyBlue"))
                     )
                 
            /*Add back button here*/
@@ -42,15 +52,18 @@ struct LoginView: View {
                                       presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("BACK")
-//                        .foregroundColor(Color("UserMessageColor"))
+                        .foregroundColor(Color("dairyBlue"))
+                        
                         
                 }
                 .padding(.vertical, 10)
                 .padding(.horizontal, 40)
                 .frame(width: 150)
+                .bold()
                 .background(
                     RoundedRectangle(cornerRadius: 12)
-                        .stroke(.blue)
+                        .stroke(Color("dairyBlue"))
+                        
                 )
             }
             .frame(width: 350)

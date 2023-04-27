@@ -65,9 +65,16 @@ struct EmptyChatView: View {
             }
             
             ZStack(alignment: .leading) {
-                Text("Let’s start chatting!")
-                    .font(.body)
+                VStack {
+                    Text("Ask Me About Marketing!")
+                        .font(.body)
                     .mask(Rectangle().offset(x: writing ? 0 : -150))
+                    Image("cowIcon")
+                        .resizable()
+                        .frame(width: 80, height: 60)
+                        .font(.body)
+                        .mask(Rectangle().offset(x: writing ? 0 : -150))
+                }
                 
                 Rectangle()
                     .fill(cursorColor)

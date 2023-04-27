@@ -29,28 +29,33 @@ struct SplashView: View {
                 VStack {
                     Image("dairyLogo")
                         .resizable()
+                        .frame(width: 130, height: 180)
                         .aspectRatio(contentMode: .fit)
                     
                     VStack {
-                        Text("The AI-generated marketing")
-                        Text("agency in your pocket")
-                    }.offset(y: -30)
+                        Text("Milk Your Content")
+                        Text("AI Marketing Agency")
+                    }.offset(y: -3)
                     
                     NavigationLink("SIGN UP", value: Legal.signup)
+                        .foregroundColor(Color("dairyBlue"))
                         .padding(.vertical, 10)
                         .padding(.horizontal, 40)
                         .frame(width: 150)
+                        .bold()
                         .background(
                             RoundedRectangle(cornerRadius: 20)
-                                .stroke(.blue)
+                                .stroke(Color("dairyBlue"))
                         )
                     NavigationLink("SIGN IN", value: Legal.signin)
+                        .foregroundColor(Color("dairyBlue"))
                         .padding(.vertical, 10)
                         .padding(.horizontal, 40)
                         .frame(width: 150)
+                        .bold()
                         .background(
                             RoundedRectangle(cornerRadius: 20)
-                                .stroke(.blue)
+                                .stroke(Color("dairyBlue"))
                             )
                 }.offset(y: -150)
             }

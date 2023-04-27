@@ -21,17 +21,20 @@ struct ProfileView: View {
 
     var body: some View {
         
-        VStack(alignment: .center, spacing: 20) {
-            Spacer()
-                .frame(height: 5)
-            ZStack {
-                Image(systemName: "square")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 300, height: 300)
-                    
-                VStack(alignment: .center, spacing: 20) {
-                    Image(systemName: "person.circle")
+        ZStack {
+            Color.white
+            Image("signup_background")
+                .resizable()
+                .offset(y: 400)
+            Image("signup_background")
+                .resizable()
+                .offset(y: -400)
+                
+            VStack(alignment: .center, spacing: 20) {
+                Spacer()
+                    .frame(height: 5)
+                ZStack {
+                    Image(systemName: "square")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 50)
@@ -64,8 +67,33 @@ struct ProfileView: View {
                         .frame(height: 30)
 //                    Text("CREATIVE DIRECTION")
 //                        .frame(height: 30)
-                }
+                        .frame(width: 300, height: 300)
+                        .overlay(
+                                LinearGradient(
+                                    gradient: Gradient(colors: [Color("dairyGold"), Color("dairyBlue")]),
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                )
+                                .mask(Image(systemName: "square")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .foregroundColor(.white)
+                                )
+                            )
+                        
+                    VStack(alignment: .center, spacing: 20) {
+                        Image(systemName: "person.circle")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 50)
+    //                    Text(dataManager.users[0].name)
+                        Text(name)
+                        Text(brandName)
+                    }
+                    //.offset(x: -50)
+                .fixedSize()
                 
+
                 VStack {
     
                     HStack {
@@ -168,25 +196,10 @@ struct ProfileView: View {
 //                        .frame(height: 30)
 //                    }
 //                }
+
             }
-            
-            Spacer()
-//            Text("View my marketing strategy")
-//                .foregroundColor(.blue)
-//                .onTapGesture {
-//                    withAnimation {
-//                        self.showSheet.toggle()
-//
-//                    }
-//                }
-//                .sheet(isPresented: $showSheet) {
-//                    PopupView(showSheet: $showSheet)
-//                }
-            Spacer()
-                .frame(height: 100)
-//            PopupView(showSheet: $showSheet)
+            .frame(width: 350)
         }
-        .frame(width: 350)
     }
 }
 struct PopupView: View {

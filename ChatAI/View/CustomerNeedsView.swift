@@ -21,21 +21,21 @@ struct CustomerNeedsView: View {
                 
                 VStack(alignment: .leading) {
                     HStack {
-                        Text("What are their current ")
+                        Text("What are their current")
                         Text("pain points?   ").foregroundColor(.blue.opacity(0.4))
                     }.offset(x: 25)
                     RoundedTextField(title: "Type here...", text: $userInfo.point).offset(y: -15)
                 }
                 VStack(alignment: .leading) {
                     HStack {
-                        Text("Do they have any ")
+                        Text("Do they have any")
                         Text("reservations?").foregroundColor(.blue.opacity(0.4))
                     }.offset(x: 25)
                     RoundedTextField(title: "Type here...", text: $userInfo.reservation).offset(y: -15)
                 }
                 VStack(alignment: .leading) {
                     HStack {
-                        Text("Enter goals related to ")
+                        Text("Enter goals related to")
                         Text("customer interaction ").foregroundColor(.blue.opacity(0.4))
                     }.offset(x: 25)
                     RoundedTextField(title: "Type here...", text: $userInfo.interaction).offset(y: -15)
@@ -46,7 +46,9 @@ struct CustomerNeedsView: View {
     }
 }
 struct CustomerNeedsView_Previews: PreviewProvider {
+    static let userInfo = UserInfo()
     static var previews: some View {
         CustomerNeedsView()
+            .environmentObject(userInfo)
     }
 }
