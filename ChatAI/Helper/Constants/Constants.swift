@@ -2,5 +2,5 @@
 import Foundation
 
 enum Constants {
-    static let API_KEY = "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"
+    static let API_KEY = "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"
 }

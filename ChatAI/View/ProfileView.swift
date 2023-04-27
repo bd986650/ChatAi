@@ -19,6 +19,7 @@ struct ProfileView: View {
     @State private var showSheet = false
     @State private var showSheet2 = false
     @State private var showSheet3 = false
+    @State private var showSheet4 = false
     @Binding var currentView: Int
     
     var body: some View {
@@ -173,15 +174,15 @@ struct ProfileView: View {
                                             .stroke(Color("dairyBlue"))
                                     )
                                     .onTapGesture {
-                                        //dataManager.fetchTwitters()
+                                        dataManager.fetchMarketingBriefs()
                                         withAnimation {
-                                            self.showSheet3.toggle()
+                                            self.showSheet4.toggle()
                                             
                                             
                                         }
                                     }
-                                    .sheet(isPresented: $showSheet3) {
-                                        PopupViewTwitter(type: 2, showSheet3: $showSheet3)
+                                    .sheet(isPresented: $showSheet4) {
+                                        PopupViewMarketingBrief(type: 2, showSheet4: $showSheet4)
                                             .environmentObject(dataManager)
                                     }
                                 
@@ -240,7 +241,7 @@ struct ProfileView: View {
                             GeometryReader { geometry in
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 10)
-                                        .foregroundColor(Color("DairyBlue"))
+                                        .foregroundColor(Color("dairyBlue"))
                                         .frame(width: geometry.size.width, height: geometry.size.height)
                                     Text(item.caption)
                                         .padding(20)
@@ -294,7 +295,7 @@ struct ProfileView: View {
                             GeometryReader { geometry in
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 10)
-                                        .foregroundColor(Color("DairyBlue"))
+                                        .foregroundColor(Color("dairyBlue"))
                                         .frame(width: geometry.size.width, height: geometry.size.height)
                                     Text(item.caption)
                                         .padding(20)
@@ -348,7 +349,7 @@ struct ProfileView: View {
                             GeometryReader { geometry in
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 10)
-                                        .foregroundColor(Color("DairyBlue"))
+                                        .foregroundColor(Color("dairyBlue"))
                                         .frame(width: geometry.size.width, height: geometry.size.height)
                                     Text(item.caption)
                                         .padding(20)
@@ -377,6 +378,61 @@ struct ProfileView: View {
         }
         
     }
+
+struct PopupViewMarketingBrief: View {
+    @EnvironmentObject var dataManager: DataManager
+    var type: Int
+    //these arrays below will be populated from the database but this will do for now
+    @Binding var showSheet4: Bool
+    
+    var body: some View {
+        
+        VStack {
+            Text("MY MARKETING STRATEGY")
+                .padding(.top,   40)
+            
+            
+            
+            
+            Text("Tweets")
+                .padding(.top, 20)
+            
+            ScrollView {
+                VStack(spacing: 10) {
+                    ForEach(dataManager.marketingBriefs) { item in
+                        GeometryReader { geometry in
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .foregroundColor(Color("dairyBlue"))
+                                    .frame(width: geometry.size.width, height: geometry.size.height)
+                                Text(item.brief)
+                                    .padding(20)
+                            }
+                        }
+                        .frame(height: getHeight(for: item.brief))
+                    }
+                }
+            }
+            .frame(width: 350, height: 560)
+            
+            
+            Button("Dismiss") {
+                print(type)
+                self.showSheet4.toggle()
+            }
+            .foregroundColor(Color("cheddarChzOrange"))
+            
+            Spacer()
+        }
+        .frame(height: 960)
+        .frame(width: UIScreen.main.bounds.width)
+        .background(.white)
+        //        .clipShape(RoundedRectangle(cornerRadius: 80))
+        .offset(y: (showSheet4 ? 100 : 500))
+    }
+    
+}
+
     func getHeight(for text: String) -> CGFloat {
         let textHeight = text.height(withConstrainedWidth: UIScreen.main.bounds.width - 20, font: .systemFont(ofSize: 17, weight: .regular))
         //        print(text)
