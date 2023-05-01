@@ -21,6 +21,7 @@ struct ProfileView: View {
     @State private var showSheet3 = false
     @State private var showSheet4 = false
     @Binding var currentView: Int
+    @State private var isActive: Bool = false
     
     var body: some View {
         
@@ -213,7 +214,7 @@ struct ProfileView: View {
                                             .stroke(Color("dairyGold"))
                                     )
                                     .onTapGesture {
-//                                        logout()
+                                        self.logout()
                                         presentationMode.wrappedValue.dismiss()
                                     }
                                     .sheet(isPresented: $showSheet3) {
@@ -222,12 +223,28 @@ struct ProfileView: View {
                                     }
                                 
                             }
+                            .background(
+                                NavigationLink(destination: LoginView().navigationBarBackButtonHidden(true), isActive: $isActive) {
+                                    EmptyView()
+                                }
+                                .opacity(0)
+                            )
                 }
                 .frame(width: 350)
                 Spacer()
             }
         }
         
+    }
+    func logout() {
+        do {
+            try Auth.auth().signOut()
+            print("signing out...")
+            self.isActive = true
+            // Additional actions after successful logout
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
+        }
     }
 }
     struct PopupView: View {
@@ -459,14 +476,7 @@ struct PopupViewMarketingBrief: View {
         }
     }
 
-func logout() {
-    do {
-        try Auth.auth().signOut()
-        // Additional actions after successful logout
-    } catch let signOutError as NSError {
-        print("Error signing out: %@", signOutError)
-    }
-}
+
 
     struct ProfileView_Previews: PreviewProvider {
         static let dataManager = DataManager()
