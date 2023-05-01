@@ -95,8 +95,11 @@ class DataManager: ObservableObject {
             if error != nil {
                 print(error!.localizedDescription)
             }
+            if result != nil {
+                print("user authenticated in the system")
+            }
         }
-        if let userId2 = Auth.auth().currentUser?.uid {
+       
             // create a dictionary with the data you want to add to the document
             let data: [String: Any] = [
                 "uId": UserId,
@@ -111,10 +114,13 @@ class DataManager: ObservableObject {
                     print("Error adding document: \(error.localizedDescription)")
                 } else {
                     print("Document added successfully")
+                    let user = User(id: UserId, name: Name, email: Email, businessName: BusinessName)
+                    self.users.append(user)
                     
                 }
             }
-        }
+        
+        
         
         
     }

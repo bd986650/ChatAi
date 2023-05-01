@@ -112,11 +112,12 @@ struct WalkthroughScreen: View {
                     action:{
                         withAnimation {
                             if current > 1  {
-                                dataManager.fetchCurrentUser()
+                                
                                 current -= 1
                             } else if current == 1 {
                                 current = 1
                             }
+                           
                         }
                     },
                     label: {
