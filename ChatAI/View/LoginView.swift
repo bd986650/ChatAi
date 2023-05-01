@@ -115,7 +115,7 @@ struct LoginView: View {
             }//zstack
             .ignoresSafeArea()
             .background(
-                        NavigationLink("", destination: ProfileandHomePageView(), isActive: $isActive)
+                NavigationLink("", destination: ProfileandHomePageView().navigationBarBackButtonHidden(true), isActive: $isActive)
                             .opacity(0)
                     )
         }//nav view
