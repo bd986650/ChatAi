@@ -87,14 +87,19 @@ class DataManager: ObservableObject {
         }
     }
     
-    func postUsers(Name: String, Email: String, BusinessName: String) {
+    func postUsers(Name: String, Email: String, BusinessName: String, Password: String, UserId: String) {
         let db = Firestore.firestore()
         let usersRef = db.collection("Users")
-    
-        if let userId = Auth.auth().currentUser?.uid {
+        
+        Auth.auth().signIn(withEmail: Email, password: Password) { result, error in
+            if error != nil {
+                print(error!.localizedDescription)
+            }
+        }
+        if let userId2 = Auth.auth().currentUser?.uid {
             // create a dictionary with the data you want to add to the document
             let data: [String: Any] = [
-                "uId": userId,
+                "uId": UserId,
                 "name": Name,
                 "email": Email,
                 "businessName": BusinessName

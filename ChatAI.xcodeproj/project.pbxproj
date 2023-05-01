@@ -46,6 +46,7 @@
 		A6BFE29929C3B89500446F69 /* ProfileandHomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BFE29829C3B89500446F69 /* ProfileandHomePageView.swift */; };
 		A6BFE29B29C3B91300446F69 /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BFE29A29C3B91300446F69 /* HomePageView.swift */; };
 		A6FFBC9129A742580082B2C1 /* BriefGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FFBC9029A742580082B2C1 /* BriefGenerator.swift */; };
+		B63943762A0040C6007B44D8 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63943752A0040C6007B44D8 /* AuthManager.swift */; };
 		B6C6A3AB29FA29A20040C86F /* Instagram.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C6A3AA29FA29A20040C86F /* Instagram.swift */; };
 		B6C6A3AD29FA57CB0040C86F /* MarketingBrief.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C6A3AC29FA57CB0040C86F /* MarketingBrief.swift */; };
 		B6C6A3AF29FA615B0040C86F /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C6A3AE29FA615B0040C86F /* Toast.swift */; };
@@ -87,6 +88,7 @@
 		A6BFE29829C3B89500446F69 /* ProfileandHomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileandHomePageView.swift; sourceTree = "<group>"; };
 		A6BFE29A29C3B91300446F69 /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
 		A6FFBC9029A742580082B2C1 /* BriefGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefGenerator.swift; sourceTree = "<group>"; };
+		B63943752A0040C6007B44D8 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		B6C6A3AA29FA29A20040C86F /* Instagram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instagram.swift; sourceTree = "<group>"; };
 		B6C6A3AC29FA57CB0040C86F /* MarketingBrief.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketingBrief.swift; sourceTree = "<group>"; };
 		B6C6A3AE29FA615B0040C86F /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
@@ -214,7 +216,7 @@
 				B6C6A3AE29FA615B0040C86F /* Toast.swift */,
 				A629AC8029FA47A30068AA49 /* FAQView.swift */,
 				A629AC8229FA5E9F0068AA49 /* ImagePickerView.swift */,
-
+				B63943752A0040C6007B44D8 /* AuthManager.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -360,6 +362,7 @@
 				A656B71829FA0D2000498C08 /* User.swift in Sources */,
 				1AC094A7297AC6A200022EF3 /* Constants.swift in Sources */,
 				A66389EC29A7C7500028BD58 /* ProfileView.swift in Sources */,
+				B63943762A0040C6007B44D8 /* AuthManager.swift in Sources */,
 				A6BFE29529C3B5C800446F69 /* RoundedTextField.swift in Sources */,
 				A6B3256829A52D82005D2796 /* LoginView.swift in Sources */,
 				A6A4831C29A5671A00061BF9 /* SignupView.swift in Sources */,

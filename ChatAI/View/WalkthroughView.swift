@@ -68,6 +68,7 @@ struct WalkthroughScreen: View {
                             .environmentObject(userInfo)
                     
                     } else if current == 2 {
+                        
                         GoalInfoView()
                             .environmentObject(userInfo)
                     } else if current == 3 {
@@ -111,6 +112,7 @@ struct WalkthroughScreen: View {
                     action:{
                         withAnimation {
                             if current > 1  {
+                                dataManager.fetchCurrentUser()
                                 current -= 1
                             } else if current == 1 {
                                 current = 1
