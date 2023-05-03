@@ -62,7 +62,7 @@ struct ProfileView: View {
                             .frame(width: 50)
 //                        Text(name)
 //                        Text(brandName)
-                        Text(brandName)
+                
                                    if dataManager.users.count > 0 {
                                        Text(dataManager.users[0].name)
                                        Text(dataManager.users[0].businessName)
