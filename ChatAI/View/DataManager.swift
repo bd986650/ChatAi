@@ -19,53 +19,56 @@ class DataManager: ObservableObject {
     @Published var marketingBriefs: [MarketingBrief] = []
     
     init () {
-        fetchUsers()
+//        fetchUsers()
         fetchInstagrams()
     }
     
-    func fetchUsers() {
-        users.removeAll()
-        let db = Firestore.firestore()
-        let ref = db.collection("Users")
-        ref.getDocuments { snapshot, error in
-            guard error == nil else {
-                print(error!.localizedDescription)
-                return
-            }
-            
-            if let snapshot = snapshot {
-                for document in snapshot.documents {
-                    let data = document.data()
-                    
-                    let id = data["uId"] as? String ?? ""
-                    let name = data["name"] as? String ?? ""
-                    let email = data["email"] as? String ?? ""
-                    let business = data["businessName"] as? String ?? ""
-                    
-                    let user = User(id: id, name: name, email: email, businessName: business)
-                    self.users.append(user)
-                }
-            }
-        }
-    }
+//    func fetchUsers() {
+//        users.removeAll()
+//        let db = Firestore.firestore()
+//        let ref = db.collection("Users")
+//        ref.getDocuments { snapshot, error in
+//            guard error == nil else {
+//                print(error!.localizedDescription)
+//                return
+//            }
+//
+//            if let snapshot = snapshot {
+//                for document in snapshot.documents {
+//                    let data = document.data()
+//
+//                    let id = data["uId"] as? String ?? ""
+//                    let name = data["name"] as? String ?? ""
+//                    let email = data["email"] as? String ?? ""
+//                    let business = data["businessName"] as? String ?? ""
+//
+//                    let user = User(id: id, name: name, email: email, businessName: business)
+//                    self.users.append(user)
+//                }
+//            }
+//        }
+//    }
     
     func fetchCurrentUser() {
-//        users.removeAll()
+        users.removeAll()
         let db = Firestore.firestore()
-        let ref = db.collection("Users")
+        let usersRef2 = db.collection("Users")
         
         if let userId = Auth.auth().currentUser?.uid {
             print("fetching current user...")
             print(userId)
-            ref.whereField("uId", isEqualTo: userId).getDocuments { snapshot, error in
+            usersRef2.whereField("uId", isEqualTo: userId).getDocuments { snapshot, error in
                 guard error == nil else {
                     print(error!.localizedDescription)
                     return
                 }
+                print("got here")
                 
                 if let snapshot = snapshot {
+                    print("inside snapshot...")
                     for document in snapshot.documents {
                         let data = document.data()
+                        print(data)
                         
                         let id = data["uId"] as? String ?? ""
                         let name = data["name"] as? String ?? ""
@@ -76,18 +79,30 @@ class DataManager: ObservableObject {
                         self.users.append(user)
                     }
                 }
+                else {
+                    print("no snapshot for some reason")
+                }
             }
+            print(users)
         }
     }
     
-    func postUsers(Name: String, Email: String, BusinessName: String) {
+    func postUsers(Name: String, Email: String, BusinessName: String, Password: String, UserId: String) {
         let db = Firestore.firestore()
         let usersRef = db.collection("Users")
-    
-        if let userId = Auth.auth().currentUser?.uid {
+        
+        Auth.auth().signIn(withEmail: Email, password: Password) { result, error in
+            if error != nil {
+                print(error!.localizedDescription)
+            }
+            if result != nil {
+                print("user authenticated in the system")
+            }
+        }
+       
             // create a dictionary with the data you want to add to the document
             let data: [String: Any] = [
-                "uId": userId,
+                "uId": UserId,
                 "name": Name,
                 "email": Email,
                 "businessName": BusinessName
@@ -99,10 +114,13 @@ class DataManager: ObservableObject {
                     print("Error adding document: \(error.localizedDescription)")
                 } else {
                     print("Document added successfully")
+                    let user = User(id: UserId, name: Name, email: Email, businessName: BusinessName)
+                    self.users.append(user)
                     
                 }
             }
-        }
+        
+        
         
         
     }

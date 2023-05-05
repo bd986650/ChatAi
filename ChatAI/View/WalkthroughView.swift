@@ -68,6 +68,7 @@ struct WalkthroughScreen: View {
                             .environmentObject(userInfo)
                     
                     } else if current == 2 {
+                        
                         GoalInfoView()
                             .environmentObject(userInfo)
                     } else if current == 3 {
@@ -111,10 +112,12 @@ struct WalkthroughScreen: View {
                     action:{
                         withAnimation {
                             if current > 1  {
+                                
                                 current -= 1
                             } else if current == 1 {
                                 current = 1
                             }
+                           
                         }
                     },
                     label: {
@@ -185,7 +188,7 @@ struct WalkthroughScreen: View {
     
     func sendMessage() {
         //get user for company name
-        dataManager.fetchCurrentUser()
+        
         let companyName = dataManager.users[0].businessName
         let messageText = "Write a content calendar for a company with this mission: " + userInfo.mission
         

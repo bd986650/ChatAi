@@ -24,6 +24,7 @@ struct ProfileView: View {
     @State private var showSheet3 = false
     @State private var showSheet4 = false
     @Binding var currentView: Int
+    @State private var isActive: Bool = false
     
     var body: some View {
         
@@ -83,11 +84,22 @@ struct ProfileView: View {
                                 ImagePickerView(selectedImage: $profileImage2)
                             }
                         }
-                        Text(name)
-                        Text(brandName)
-                        //                        Text(dataManager.users[0].name)
-                        //                        Text(dataManager.users[0].businessName)
+//                        Text(name)
+//                        Text(brandName)
+                
+                                   if dataManager.users.count > 0 {
+                                       Text(dataManager.users[0].name)
+                                       Text(dataManager.users[0].businessName)
+                                   } else {
+                                       Text("Loading...")
+                                   }
+                               
+                            
                     }
+                    .onAppear {
+                               // Fetch users data and update the dataManager's users property
+                               dataManager.fetchCurrentUser()
+                           }
                     //.offset(x: -50)
                     .fixedSize()
                 }
@@ -226,7 +238,7 @@ struct ProfileView: View {
                                             .stroke(Color("dairyGold"))
                                     )
                                     .onTapGesture {
-//                                        logout()
+                                        self.logout()
                                         presentationMode.wrappedValue.dismiss()
                                     }
                                     .sheet(isPresented: $showSheet3) {
@@ -235,12 +247,28 @@ struct ProfileView: View {
                                     }
                                 
                             }
+                            .background(
+                                NavigationLink(destination: LoginView().navigationBarBackButtonHidden(true), isActive: $isActive) {
+                                    EmptyView()
+                                }
+                                .opacity(0)
+                            )
                 }
                 .frame(width: 350)
                 Spacer()
             }
         }
         
+    }
+    func logout() {
+        do {
+            try Auth.auth().signOut()
+            print("signing out...")
+            self.isActive = true
+            // Additional actions after successful logout
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
+        }
     }
 }
     struct PopupView: View {
@@ -373,7 +401,7 @@ struct ProfileView: View {
                             GeometryReader { geometry in
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 10)
-                                        .foregroundColor(Color("DairyBlue"))
+                                        .foregroundColor(Color("dairyBlue"))
                                         .frame(width: geometry.size.width, height: geometry.size.height)
                                     Text(item.caption)
                                         .padding(20)
@@ -418,6 +446,7 @@ struct PopupViewMarketingBrief: View {
             
             
             
+
             Text("Marketing Brief")
                 .padding(.top, 20)
             
@@ -427,7 +456,7 @@ struct PopupViewMarketingBrief: View {
                         GeometryReader { geometry in
                             ZStack {
                                 RoundedRectangle(cornerRadius: 10)
-                                    .foregroundColor(Color("DairyBlue"))
+                                    .foregroundColor(Color("dairyBlue"))
                                     .frame(width: geometry.size.width, height: geometry.size.height)
                                 Text(item.brief)
                                     .padding(20)
@@ -472,14 +501,7 @@ struct PopupViewMarketingBrief: View {
         }
     }
 
-func logout() {
-    do {
-        try Auth.auth().signOut()
-        // Additional actions after successful logout
-    } catch let signOutError as NSError {
-        print("Error signing out: %@", signOutError)
-    }
-}
+
 
     struct ProfileView_Previews: PreviewProvider {
         @State static var profileImage: Image? = Image(systemName: "person.circle")
