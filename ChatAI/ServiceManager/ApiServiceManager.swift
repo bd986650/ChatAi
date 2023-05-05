@@ -5,6 +5,13 @@ import Combine
 
 class APIServiceManager {
     let baseUrl = "https://api.openai.com/v1/"
+    let configuration = URLSessionConfiguration.default
+      let session: Session
+
+      init() {
+          configuration.timeoutIntervalForRequest = 90 // Set the timeout to 60 seconds
+          session = Session(configuration: configuration)
+      }
     
     func sendMessage(message: String) -> AnyPublisher<ModelResponse, Error>{
         let model = Model(model: "text-davinci-003", prompt: message, temperature: 0.9, max_tokens: 2048)
