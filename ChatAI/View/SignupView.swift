@@ -32,8 +32,13 @@ struct CheckboxToggleStyle: ToggleStyle {
 }
 
 struct SignupView: View {
+    struct SignUpError: Identifiable {
+        let id = UUID()
+        let message: String
+    }
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var dataManager: DataManager
+    @State private var clickedDone = false
     @State private var name = ""
     @State private var businessName = ""
     @State private var email = ""
@@ -44,6 +49,7 @@ struct SignupView: View {
     @State private var userIsLoggedIn = false
     @State private var isAgree = false
     @State var showNextPage = false
+    @State private var alertMessage: SignUpError?
 
     var body: some View {
         ZStack {
@@ -105,19 +111,45 @@ struct SignupView: View {
                             }
                         } //Vstack
                         
-                        NavigationLink("DONE", destination: WalkthroughView().onAppear {
-
-                            self.register()
+                        Button(action: {
+                            if self.isAgree {
+                                self.register()
+                               
+                                
+                            }
+                        }) {
+                            Text("DONE")
+                                .padding(.vertical, 10)
+                                .padding(.horizontal, 40)
+                                .frame(width: 150)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .stroke(.blue)
+                                )
+                        }
+                        .disabled(!self.isAgree || clickedDone)
+                        .opacity(clickedDone ? 0.0 : 1.0)
+                        
+                        .overlay (
+                     
+                        NavigationLink("NEXT", destination: WalkthroughView().onAppear {
+                            print("here")
+                           
                         })
-                            .disabled(!self.isAgree)
+                            .disabled(!self.clickedDone)
+
                             .padding(.vertical, 10)
                             .padding(.horizontal, 40)
                             .frame(width: 150)
-                            .bold()
                             .background(
                                 RoundedRectangle(cornerRadius: 12)
                                     .stroke(Color("dairyBlue"))
                             )
+
+                            .opacity(clickedDone ? 1.0 : 0.0)
+                        
+                    )
+                        
                         Button(action: {
                                 presentationMode.wrappedValue.dismiss()
                         }) {
@@ -136,30 +168,35 @@ struct SignupView: View {
 
                 }
                 .frame(width: 350)
+                .alert(item: $alertMessage) { message in
+                    Alert(title: Text("Error"), message: Text(message.message), dismissButton: .default(Text("OK")))
+                  }
             }
             
         }
         .edgesIgnoringSafeArea(.all)
     }
     
-        func register() {
-            if (password != passwordConfirm) {
-                // Create a new alert
-          print("passwords no match")
-                
-
-            }
-            else {
-                Auth.auth().createUser(withEmail: email, password: password) { result, error in
-                    if error != nil {
-                        print(error!.localizedDescription)
-                    }
+    func register() {
+        if (password != passwordConfirm) {
+            // Show alert if passwords don't match
+            alertMessage = SignUpError(message: "Passwords do not match")
+        } else {
+            Auth.auth().createUser(withEmail: email, password: password) { result, error in
+                if let error = error {
+                    // Show alert if an error occurs during registration
+                    alertMessage = SignUpError(message: error.localizedDescription)
+                } else if let result = result {
+                    // Registration successful, add user data to database
+                    self.clickedDone = true
+                    let userId = result.user.uid
+                    dataManager.postUsers(Name: name, Email: email, BusinessName: businessName, Password: password, UserId: userId)
                 }
-                //add to user db
-                dataManager.postUsers(Name: name, Email: email, BusinessName: businessName)
             }
-        } // register
+        }
+    }//register
 }
+
 struct SignupView_Previews: PreviewProvider {
     static var previews: some View {
         SignupView()
