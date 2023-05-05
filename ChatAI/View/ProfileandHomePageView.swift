@@ -7,6 +7,7 @@
 
 import SwiftUI
 struct ProfileandHomePageView: View {
+    @State var profileImage: Image? = Image(systemName: "person.circle")
     @EnvironmentObject var dataManager: DataManager
     @State var currentView = 0
     @State var image = "newspaper.fill"

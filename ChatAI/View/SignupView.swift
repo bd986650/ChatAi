@@ -44,8 +44,8 @@ struct SignupView: View {
     @State private var email = ""
     @State private var password = ""
     @State private var passwordConfirm = ""
-    @State private var profileImage: UIImage?
-    @State private var isShowingImagePicker = false
+//    @State private var profileImage: UIImage? = nil
+//    @State private var isShowingImagePicker = false
     @State private var userIsLoggedIn = false
     @State private var isAgree = false
     @State var showNextPage = false
@@ -76,23 +76,6 @@ struct SignupView: View {
                         RoundedTextField(title: "Re-Type Password", text: $passwordConfirm, type: 1)
                         
                         VStack {
-                         Button(action: {
-                             isShowingImagePicker = true
-                             
-                         }) {
-                             HStack {
-                                 Text("Add Profile Picture")
-                                 Image(systemName:"camera")
-                             }
-                             .padding()
-                             .background(Color("dairyBlue"))
-                             .foregroundColor(.black)
-                             .cornerRadius(10)
-                             .frame(width: 500)
-                         }
-                         .sheet(isPresented: $isShowingImagePicker) {
-                             ImagePickerView(selectedImage: $profileImage)
-                         }
                             Toggle(isOn: $isAgree) {
                                 Text("I accept the Privacy Policy and Terms")
                                     .foregroundColor(.black)

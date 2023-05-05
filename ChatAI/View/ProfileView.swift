@@ -10,8 +10,11 @@ import Firebase
 import FirebaseFirestore
 
 struct ProfileView: View {
+//    @Binding var profileImage: Image?
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var dataManager: DataManager
+    @State private var profileImage2: UIImage? = nil
+    @State private var isShowingImagePicker = false
     
     let types: [Int] = [0, 1, 2]
     var name = "Sarah Apple"
@@ -56,10 +59,31 @@ struct ProfileView: View {
                         )
                     
                     VStack(alignment: .center, spacing: 20) {
-                        Image(systemName: "person.circle")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 50)
+                        Button(action: {
+                            isShowingImagePicker = true
+                            
+                        }) {
+                            if let image = profileImage2 {
+                                Image(uiImage:image)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 100, height: 100)
+                                    .clipShape(Circle())
+                                                        
+                             } else {
+                                 Image(systemName: "person")
+                                     .resizable()
+                                     .scaledToFit()
+                                     .frame(width: 100, height: 100)
+                                     .clipShape(Circle())
+                                     .foregroundColor(.black)
+                            }
+                        }
+                        .sheet(isPresented: $isShowingImagePicker) {
+                            VStack {
+                                ImagePickerView(selectedImage: $profileImage2)
+                            }
+                        }
 //                        Text(name)
 //                        Text(brandName)
                 
@@ -422,7 +446,8 @@ struct PopupViewMarketingBrief: View {
             
             
             
-            Text("Tweets")
+
+            Text("Marketing Brief")
                 .padding(.top, 20)
             
             ScrollView {
@@ -479,6 +504,7 @@ struct PopupViewMarketingBrief: View {
 
 
     struct ProfileView_Previews: PreviewProvider {
+        @State static var profileImage: Image? = Image(systemName: "person.circle")
         static let dataManager = DataManager()
         static var previews: some View {
             ProfileView(currentView: .constant(0))
