@@ -295,8 +295,17 @@ struct ProfileView: View {
                                     RoundedRectangle(cornerRadius: 10)
                                         .foregroundColor(Color("dairyBlue"))
                                         .frame(width: geometry.size.width, height: geometry.size.height)
-                                    Text(item.caption)
-                                        .padding(20)
+                                    VStack {
+                                        Text(item.caption)
+                                            .padding(5)
+                                        Button(action: {
+                                            UIPasteboard.general.string = item.caption
+                                                    }) {
+                                                        Image(systemName: "doc.on.clipboard")
+                                                            .font(.system(size: 20))
+                                                            .foregroundColor(.white)
+                                                    }
+                                    }
                                 }
                             }
                             .frame(height: getHeight(for: item.caption))
@@ -349,8 +358,18 @@ struct ProfileView: View {
                                     RoundedRectangle(cornerRadius: 10)
                                         .foregroundColor(Color("dairyBlue"))
                                         .frame(width: geometry.size.width, height: geometry.size.height)
-                                    Text(item.caption)
-                                        .padding(20)
+                                    VStack {
+                                        Text(item.caption)
+                                            .padding(20)
+                                        Button(action: {
+                                            UIPasteboard.general.string = item.caption
+                                                    }) {
+                                                        Image(systemName: "doc.on.clipboard")
+                                                            .font(.system(size: 20))
+                                                            .foregroundColor(.white)
+                                                    }
+                                    }
+                                    
                                 }
                             }
                             .frame(height: getHeight(for: item.caption))
@@ -403,8 +422,17 @@ struct ProfileView: View {
                                     RoundedRectangle(cornerRadius: 10)
                                         .foregroundColor(Color("dairyBlue"))
                                         .frame(width: geometry.size.width, height: geometry.size.height)
-                                    Text(item.caption)
-                                        .padding(20)
+                                    VStack {
+                                        Text(item.caption)
+                                            .padding(20)
+                                        Button(action: {
+                                            UIPasteboard.general.string = item.caption
+                                                    }) {
+                                                        Image(systemName: "doc.on.clipboard")
+                                                            .font(.system(size: 20))
+                                                            .foregroundColor(.white)
+                                                    }
+                                    }
                                 }
                             }
                             .frame(height: getHeight(for: item.caption))
