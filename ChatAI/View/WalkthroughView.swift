@@ -43,8 +43,10 @@ struct WalkthroughView: View {
                     .environmentObject(dataManager)
             } else {
                 //make api call here with all the variables and send information to backend to be grabbed by profile view
-               
-                ProfileandHomePageView().navigationBarBackButtonHidden(true)
+//
+//                ProfileandHomePageView().navigationBarBackButtonHidden(true)
+                LoadingScreen().navigationBarBackButtonHidden(true)
+                
             }
         }
     }
