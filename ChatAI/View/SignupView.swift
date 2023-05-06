@@ -148,7 +148,10 @@ struct SignupView: View {
                         )
 
                     }
-
+                    Spacer()
+                    Spacer()
+                    Spacer()
+                    Spacer()
                 }
                 .frame(width: 350)
                 .alert(item: $alertMessage) { message in
